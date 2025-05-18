@@ -1,10 +1,9 @@
-
 import React from 'react';
-
 import news1 from '../assets/images/news1.png';
 import news2 from '../assets/images/news2.png';
 import news3 from '../assets/images/news3.png';
 
+// Latest news section displaying news cards
 const LatestNews = () => {
   const newsItems = [
     {
@@ -43,7 +42,6 @@ const LatestNews = () => {
             Latest News
           </h2>
         </div>
-
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {newsItems.map((item) => (
             <div
@@ -65,8 +63,6 @@ const LatestNews = () => {
             </div>
           ))}
         </div>
-
-        {/* View More Button below the cards on the far right */}
         <div className="flex justify-end mt-14">
           <button
             className="text-white px-6 py-2 rounded-lg hover:bg-gradient-to-b hover:from-[#16A8E0] hover:to-[#3A2E7B] transition"

@@ -4,8 +4,7 @@ import portfolio2 from '../assets/images/portfolio2.png';
 import portfolio3 from '../assets/images/portfolio3.png';
 import portfolio6 from '../assets/images/portfolio6.png';
 
-
-
+// Portfolio section showcasing project cards with hover effects
 const Portfolio = () => {
   const projects = [
     {
@@ -54,21 +53,17 @@ const Portfolio = () => {
             Our Portfolio
           </h2>
         </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project) => (
             <div
               key={project.id}
               className="group relative overflow-hidden rounded-lg cursor-pointer"
             >
-              {/* Image */}
               <img
                 src={project.image}
                 alt={project.title}
                 className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
               />
-
-              {/* Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <h3 className="text-white text-xl font-semibold mb-2">
@@ -77,8 +72,6 @@ const Portfolio = () => {
                   <p className="text-blue-300 text-sm">{project.category}</p>
                 </div>
               </div>
-
-              {/* Decorative Texts (Optional, based on previous context) */}
               <div className="absolute top-4 left-4 text-blue-400 text-xs font-light opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 PORTFOLIO
               </div>
@@ -88,8 +81,6 @@ const Portfolio = () => {
             </div>
           ))}
         </div>
-
-        {/* View More Button below the cards on the far right */}
         <div className="flex justify-end mt-14">
           <button
             className="text-white px-6 py-2 rounded-lg hover:bg-gradient-to-b hover:from-[#16A8E0] hover:to-[#3A2E7B] transition"

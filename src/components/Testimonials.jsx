@@ -1,9 +1,9 @@
-
 import React, { useState } from 'react';
 import groubstudent from '../assets/images/group-photo.png';
 import student from '../assets/images/student.png';
 import quoteMark from '../assets/images/quote-mark.png';
 
+// Testimonials section with student feedback and navigation
 const Testimonials = () => {
   const testimonials = [
     {
@@ -13,7 +13,6 @@ const Testimonials = () => {
       image: student,
       text: 'This Course is Awesome I Went From Knowing Nothing About Coding\nTo Landing My First Job As A Frontend Developer\nWithin 6 Months',
     },
-    // Add more testimonials as needed
   ];
 
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
@@ -39,15 +38,13 @@ const Testimonials = () => {
             See What Our Students Say .....
           </h2>
         </div>
-
         <div className="relative flex flex-col md:flex-row items-center justify-between gap-12">
-          {/* Testimonial Card */}
           <div
             className="p-8 w-full md:w-1/2 relative z-10"
             style={{
               border: '2px dashed',
-              borderImage: 'linear-gradient(to right, #1DBFFE, #3F5EA8, #4A3D8B) 20', // Increased slice for dash clarity
-              borderImageRepeat: 'stretch', // Ensure gradient stretches across dashes
+              borderImage: 'linear-gradient(to right, #1DBFFE, #3F5EA8, #4A3D8B) 20',
+              borderImageRepeat: 'stretch',
             }}
           >
             <div className="flex flex-col gap-4">
@@ -77,8 +74,6 @@ const Testimonials = () => {
               </p>
             </div>
           </div>
-
-          {/* Group Photo */}
           <div className="w-full md:w-1/3">
             <div className="relative">
               <img
@@ -89,8 +84,6 @@ const Testimonials = () => {
             </div>
           </div>
         </div>
-
-        {/* Navigation Dots */}
         <div className="flex justify-center mt-10 space-x-3">
           {[0, 1, 2].map((index) => (
             <button

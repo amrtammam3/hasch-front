@@ -5,6 +5,7 @@ import Frame3 from '../assets/images/Frame 3.png';
 import LandSwitchDark from '../assets/images/Land Switch - Dark.png';
 import { HiMenuAlt3, HiX } from 'react-icons/hi';
 
+// Responsive navigation bar with mobile menu and theme toggle
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
@@ -27,11 +28,10 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`${darkMode ? 'bg-[#13022E]' : 'bg-white'} fixed top-0 left-0 w-full z-50 shadow-md transition`}>
+    <nav className={`${darkMode ? 'bg-[#1a0b3a]' : 'bg-white'} fixed top-0 left-0 w-full z-50 shadow-md transition`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap justify-between items-center h-20">
-          {/* Logo */}
-          <a href="/" className="flex items-center gap-2 flex-shrink-0 ml-2 md:ml-4 lg:ml-6">
+          <a href="/" className="flex items-center gap-2 flex-shrink-0 ml-4 md:ml-6 lg:ml-8">
             <img
               src={Logo}
               alt="HaschCode Logo"
@@ -41,9 +41,7 @@ const Navbar = () => {
               HaschCode
             </span>
           </a>
-
-          {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center space-x-10">
+          <div className="hidden lg:flex items-center space-x-6">
             {navItems.map((item) => (
               <a
                 key={item.name}
@@ -57,33 +55,27 @@ const Navbar = () => {
               </a>
             ))}
           </div>
-
-          {/* Right Buttons - Desktop */}
           <div className="hidden lg:flex items-center space-x-6">
             <img
               src={Frame3}
               alt="AI Assistant"
-              className="h-16 w-auto max-w-[60px] object-contain cursor-pointer"
+              className="h-18 w-auto max-w-[64px] object-contain cursor-pointer"
             />
             <img
               src={LandSwitchDark}
               alt="Theme Toggle"
               className="h-14 w-auto max-w-[52px] object-contain cursor-pointer"
             />
-
             <div className="flex items-center gap-2">
               <span className={`text-lg ${darkMode ? 'text-white' : 'text-black'}`}>EN</span>
               <svg className="w-5 h-5" fill="none" stroke={darkMode ? 'white' : 'black'} viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </div>
-
             <button className={`${darkMode ? 'text-white' : 'text-black'} hover:text-gray-400 transition text-lg`}>
               Log in
             </button>
           </div>
-
-          {/* Mobile Menu Button */}
           <div className="lg:hidden flex items-center">
             <button onClick={toggleMenu} className={`${darkMode ? 'text-white' : 'text-black'} p-2`}>
               {isOpen ? <HiX className="h-6 w-6" /> : <HiMenuAlt3 className="h-6 w-6" />}
@@ -91,10 +83,8 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-
-      {/* Mobile Menu */}
       {isOpen && (
-        <div className={`${darkMode ? 'bg-[#13022E]' : 'bg-white'} lg:hidden border-t border-gray-700 transition-all duration-300`}>
+        <div className={`${darkMode ? 'bg-[#1a0b3a]' : 'bg-white'} lg:hidden border-t border-gray-700 transition-all duration-300`}>
           <div className="flex flex-col items-start px-4 py-4 space-y-4">
             {navItems.map((item) => (
               <a
@@ -106,11 +96,9 @@ const Navbar = () => {
                 {item.name}
               </a>
             ))}
-
             <div className="pt-4 w-full space-y-4 border-t border-gray-600">
               <img src={Frame3} alt="AI Assistant" className="h-10 w-auto object-contain cursor-pointer" />
               <img src={LandSwitchDark} alt="Theme Toggle" className="h-8 w-auto object-contain cursor-pointer" />
-
               <div className="flex flex-col gap-4">
                 <div className="flex items-center gap-2">
                   <span className={`text-sm ${darkMode ? 'text-white' : 'text-black'}`}>EN</span>
@@ -118,7 +106,6 @@ const Navbar = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </div>
-
                 <button className={`${darkMode ? 'text-white' : 'text-black'} hover:text-gray-400 transition`}>
                   Log in
                 </button>
