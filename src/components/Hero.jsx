@@ -17,7 +17,7 @@ const Hero = () => {
     titleContentDesktop = (
       <>
         {titleParts[0]}
-        <span className="text-[#1DBFFE]">موق Marlonعك الالكتروني</span>
+        <span className="text-[#1DBFFE]">موقعك الالكتروني</span>
         {titleParts[1]}
       </>
     );
