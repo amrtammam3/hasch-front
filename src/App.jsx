@@ -1,5 +1,7 @@
-import React from 'react';
+
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import OnlineClasses from './components/OnlineClasses';
@@ -11,10 +13,26 @@ import UpcomingEvents from './components/UpcomingEvents';
 import Footer from './components/Footer';
 
 function App() {
+  const { i18n } = useTranslation();
+  const [theme, setTheme] = useState('light');
+
+  useEffect(() => {
+    // تحديد اتجاه الصفحة بناءً على اللغة الحالية
+    document.documentElement.dir = i18n.language === 'ar' ? 'rtl' : 'ltr';
+  }, [i18n.language]); // يتغير كل ما اللغة تتغير
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [theme]);
+
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-[#1A0B2E]">
-        <Navbar />
+      <div className="min-h-screen" dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
+        <Navbar theme={theme} setTheme={setTheme} />
         <Hero />
         <OnlineClasses />
         <Testimonials />

@@ -1,14 +1,17 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import mlBackground from '../assets/images/course card 1.png';
 import aiBackground from '../assets/images/course card 2.png';
 import laravelBackground from '../assets/images/course card 3.png';
 import reactBackground from '../assets/images/course card 4.png';
 
 // Course card component to display individual course details
-const CourseCard = ({ title, price, isFree, image, rating, students }) => {
+const CourseCard = ({ title, price, isFree, image, rating, students, cardHeight }) => {
+  const { t } = useTranslation();
+  
   return (
     <div
-      className="bg-[#1A0B2E] rounded-lg overflow-hidden relative w-full h-96"
+      className={`bg-[#1A0B2E] rounded-lg overflow-hidden relative w-full ${cardHeight || 'h-96'}`}
       style={{ backgroundImage: `url(${image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
     >
       <div className="absolute inset-0 bg-black bg-opacity-20"></div>
@@ -24,10 +27,10 @@ const CourseCard = ({ title, price, isFree, image, rating, students }) => {
           </svg>
           <span className="text-white text-sm">{rating.toFixed(1)} ({students})</span>
         </div>
-        <p className="text-white text-sm">30 Hours, 20 Lectures</p>
+        <p className="text-white text-sm">30 {t('common.hours')}, 20 {t('common.lectures')}</p>
       </div>
       <div className="absolute bottom-4 right-4 text-blue-400 text-xl font-bold">
-        {isFree ? 'Free' : `$${price}`}
+        {isFree ? t('common.free') : `$${price}`}
       </div>
     </div>
   );
@@ -35,10 +38,12 @@ const CourseCard = ({ title, price, isFree, image, rating, students }) => {
 
 // Main courses section displaying a grid of course cards
 const Courses = () => {
+  const { t } = useTranslation();
+
   const courses = [
     {
       id: 1,
-      title: 'Machine Learning Course',
+      title: t('courses.machineLearning'),
       price: 0,
       isFree: true,
       image: mlBackground,
@@ -47,7 +52,7 @@ const Courses = () => {
     },
     {
       id: 2,
-      title: 'AI Development',
+      title: t('courses.aiDevelopment'),
       price: 35,
       isFree: false,
       image: aiBackground,
@@ -56,7 +61,7 @@ const Courses = () => {
     },
     {
       id: 3,
-      title: 'Laravel Development',
+      title: t('courses.laravelDevelopment'),
       price: 0,
       isFree: true,
       image: laravelBackground,
@@ -65,7 +70,7 @@ const Courses = () => {
     },
     {
       id: 4,
-      title: 'React Native',
+      title: t('courses.reactNative'),
       price: 24.99,
       isFree: false,
       image: reactBackground,
@@ -75,30 +80,58 @@ const Courses = () => {
   ];
 
   return (
-    <div className="bg-[#1A0B2E] py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1DBFFE] mb-4">
-            Our Courses
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {courses.map((course) => (
-            <CourseCard key={course.id} {...course} />
+    <>
+      {/* موبايل فقط */}
+      <div className="block md:hidden relative bg-white dark:bg-[#1A0B2E] py-10 min-h-screen overflow-hidden">
+        {/* زخارف دوائر */}
+        <span className="absolute top-0 left-0 w-20 h-20 border-2 border-[#8169F1] opacity-30 rounded-full"></span>
+        <span className="absolute bottom-0 right-0 w-16 h-16 border-2 border-[#8169F1] opacity-30 rounded-full"></span>
+        {/* العنوان */}
+        <h2 className="text-xl font-bold text-[#3A2E7B] dark:text-[#1DBFFE] text-center mb-8">
+          {t('courses.title')}
+        </h2>
+        {/* الشبكة */}
+        <div className="grid grid-cols-2 gap-4 px-2">
+          {courses.slice(0, 2).map((course) => (
+            <div key={course.id} className="w-full aspect-square">
+              <CourseCard {...course} cardHeight="h-full" />
+            </div>
           ))}
         </div>
-        <div className="flex justify-end mt-14">
+        {/* الزر */}
+        <div className="flex justify-end px-4 mt-10">
           <button
-            className="text-white px-6 py-2 rounded-lg hover:bg-gradient-to-b hover:from-[#16A8E0] hover:to-[#3A2E7B] transition"
-            style={{
-              background: 'linear-gradient(to bottom, #1DBFFE, #4A3D8B)',
-            }}
+            className="text-white px-8 py-2 rounded-full bg-gradient-to-b from-[#1DBFFE] to-[#4A3D8B] text-base font-semibold shadow"
           >
-            View More
+            {t('courses.viewMore')}
           </button>
         </div>
       </div>
-    </div>
+      {/* ديسكتوب فقط */}
+      <div className="hidden md:block">
+        <div className="bg-white dark:bg-[#1A0B2E] py-20 transition-colors duration-300">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-primary dark:text-[#1DBFFE] mb-4">
+                {t('courses.title')}
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {courses.map((course) => (
+                <CourseCard key={course.id} {...course} />
+              ))}
+            </div>
+            <div className="flex justify-end mt-14">
+              <button
+                className="text-white px-6 py-2 rounded-lg bg-gradient-to-b from-secondary to-primary hover:from-primary hover:to-secondary transition dark:from-[#1DBFFE] dark:to-[#4A3D8B]"
+              >
+                {t('courses.viewMore')}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 

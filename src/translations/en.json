@@ -1,0 +1,121 @@
+{
+  "nav": {
+    "home": "Home",
+    "courses": "Courses",
+    "portfolio": "Portfolio",
+    "news": "News",
+    "events": "Events",
+    "about": "About Us",
+    "contact": "Contact Us"
+  },
+  "common": {
+    "language": "Language",
+    "login": "Log in",
+    "viewMore": "View More",
+    "hours": "Hours",
+    "lectures": "Lectures",
+    "free": "Free"
+  },
+  "hero": {
+    "title": "Build Your Website In Smart Way",
+    "subtitle": "Start your career with the most skilled programmers and designers",
+    "description": "The best solution to success"
+  },
+  "courses": {
+    "title": "Our Courses",
+    "viewMore": "View More",
+    "machineLearning": "Machine Learning Course",
+    "aiDevelopment": "AI Development",
+    "laravelDevelopment": "Laravel Development",
+    "reactNative": "React Native"
+  },
+  "portfolio": {
+    "title": "Our Portfolio",
+    "getItDone": "Get it done",
+    "welcomeToFlash": "Welcome to Flash",
+    "nature": "Nature",
+    "digitalArt": "Digital Art",
+    "modernDesign": "Modern Design",
+    "natureBeauty": "Nature Beauty",
+    "categories": {
+      "webDesign": "Web Design",
+      "uiUxDesign": "UI/UX Design",
+      "photography": "Photography",
+      "digitalArt": "Digital Art"
+    }
+  },
+  "news": {
+    "title": "Latest News",
+    "viewMore": "View more",
+    "newCourseRelease": "New course release",
+    "description1": "we've just launched a comprehensive",
+    "description2": "full stack web development course"
+  },
+  "events": {
+    "title": "Upcoming Events",
+    "viewMore": "View More",
+    "event1": {
+      "title": "Web Development Workshop",
+      "date": "March 15, 2024",
+      "time": "10:00 AM",
+      "location": "Online"
+    },
+    "event2": {
+      "title": "AI & Machine Learning Conference",
+      "date": "April 20, 2024",
+      "time": "2:00 PM",
+      "location": "Main Campus"
+    },
+    "event3": {
+      "title": "Mobile App Development Seminar",
+      "date": "May 5, 2024",
+      "time": "11:00 AM",
+      "location": "Online"
+    }
+  },
+  "testimonials": {
+    "title": "see what our ",
+    "subtitle": "student say",
+    "testimonial1": {
+      "name": "Ahmed Salem",
+      "text": "This Course is Awesome I Went From Knowing Nothing About Coding To Landing My First Job As A Frontend Developer Within 6 Months"
+    },
+    "testimonial2": {
+      "name": "Sarah Johnson",
+      "text": "The instructors are amazing and the curriculum is well-structured. I learned more in 3 months than I did in a year of self-study."
+    },
+    "testimonial3": {
+      "name": "Mohammed Ali",
+      "text": "The practical projects and real-world examples helped me understand complex concepts easily. Highly recommended!"
+    }
+  },
+  "onlineClasses": {
+    "title": "Online Classes With Professional Instructors",
+    "description1": "Our Courses Cover All Fields in Programming World, from Beginner to Advanced Levels",
+    "description2": "Learn With Expert Guidance To Build Your Career",
+    "description3": "what we provide to you....",
+    "features": {
+      "comprehensive": "Comprehensive Courses",
+      "expert": "Expert Instructors",
+      "weekly": "Weekly Projects",
+      "community": "Community Support",
+      "certification": "Certification"
+    }
+  },
+  "footer": {
+    "aboutUs": "About Us",
+    "aboutDescription": "we are a start up with an international team work from all over the world",
+    "getStarted": "Get Started",
+    "startup": "Start up",
+    "website": "Website",
+    "application": "Application",
+    "landingPage": "Landing Page",
+    "support": "Support",
+    "helpCenter": "Help center",
+    "myAccount": "My Account",
+    "contactUs": "Contact Us",
+    "privacyPolicies": "Privacy policies",
+    "followUs": "Follow us",
+    "rights": "2025 All rights reserved to Hasch Code"
+  }
+} 
