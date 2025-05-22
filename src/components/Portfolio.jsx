@@ -5,7 +5,6 @@ import portfolio2 from '../assets/images/portfolio2.png';
 import portfolio3 from '../assets/images/portfolio3.png';
 import portfolio6 from '../assets/images/portfolio6.png';
 
-// Portfolio section showcasing project cards with hover effects
 const Portfolio = () => {
   const { t } = useTranslation();
 
@@ -50,13 +49,10 @@ const Portfolio = () => {
 
   return (
     <>
-      {/* موبايل فقط */}
       <div className="block md:hidden relative bg-white dark:bg-[#1A0B2E] py-10 min-h-screen overflow-hidden">
-        {/* زخارف دوائر */}
         <span className="absolute top-0 left-0 w-20 h-20 border-2 border-[#8169F1] opacity-30 rounded-full"></span>
         <span className="absolute top-1/2 right-0 w-16 h-16 border-2 border-[#8169F1] opacity-30 rounded-full"></span>
         <span className="absolute bottom-0 left-1/2 w-20 h-20 border-2 border-[#8169F1] opacity-30 rounded-full"></span>
-        {/* العنوان */}
         <h2 className="text-xl font-bold text-[#3A2E7B] dark:text-[#1DBFFE] text-center mb-8">
           {t('portfolio.title')}
         </h2>

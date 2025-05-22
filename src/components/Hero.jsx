@@ -1,42 +1,47 @@
 
 
-import React from 'react';
+
+
+
 import { useTranslation } from 'react-i18next';
 import laptopMockup from '../assets/images/laptop-mockup.png';
 import phonemockup from '../assets/images/mobile-mockup.png';
 import ellipse16 from '../assets/images/Ellipse 16.png';
 
 const Hero = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   let titleContentDesktop;
   let titleContentMobile;
 
-  if (t('hero.title').includes('انشئ')) {
-    const titleParts = t('hero.title').split('موقعك الالكتروني');
+  if (i18n.language === 'ar') {
+    const titlePartsDesktop = 'انشئ موقعك الالكتروني بافضل'.split('موقعك الالكتروني');
+    const titlePartsMobile = 'انشئ موقعك الالكتروني بافضل واذكي طريقة'.split('موقعك الالكتروني');
+    
     titleContentDesktop = (
       <>
-        {titleParts[0]}
+        {titlePartsDesktop[0]}
         <span className="text-[#1DBFFE]">موقعك الالكتروني</span>
-        {titleParts[1]}
+        {titlePartsDesktop[1]}
+        <br />
+        واذكي طريقة
       </>
     );
     titleContentMobile = (
       <>
-        {titleParts[0]}
+        {titlePartsMobile[0]}
         <span className="text-[#1DBFFE]">موقعك الالكتروني</span>
-        {titleParts[1]}
+        {titlePartsMobile[1]}
       </>
     );
   } else {
-    const titleParts = t('hero.title').split('Website');
+    const titleParts = t('hero.title')?.split('Website') ?? ['Build Your ', ' in smart'];
     titleContentDesktop = (
       <>
         {titleParts[0]}
         <span className="text-[#1DBFFE]">Website</span>
         {' in smart'}
-        <br />
-        smart
+     
       </>
     );
     titleContentMobile = (
@@ -58,31 +63,43 @@ const Hero = () => {
           <img
             src={ellipse16}
             alt="Ellipse"
-            className="absolute w-18 h-18 top-32 left-1/3 transform -translate-x-1/2"
+            className="absolute w-[72px] h-[72px] top-32 left-1/3 transform -translate-x-1/2"
           />
           <img
             src={ellipse16}
             alt="Ellipse"
-            className="absolute w-18 h-18 top-40 left-16"
+            className="absolute w-[72px] h-[72px] top-40 left-16"
           />
           <img
             src={ellipse16}
             alt="Ellipse"
-            className="absolute w-18 h-18 bottom-40 left-1/4 transform -translate-x-1/2"
+            className="absolute w-[72px] h-[72px] bottom-40 left-1/4 transform -translate-x-1/2"
           />
         </div>
         <div className="max-w-7xl mx-auto px-4 relative pt-0">
           <div className="flex flex-col">
-            <h1 className="text-[32px] font-bold text-white dark:text-white leading-tight mb-8 ml-4">
+            <h1
+              className={`text-[32px] font-bold text-white dark:text-white leading-tight mb-8 ml-4 font-poppins ${
+                i18n.language === 'ar' ? 'font-bold' : ''
+              }`}
+            >
               {titleContentMobile}
             </h1>
             <div className="flex flex-row items-center justify-between w-full">
               <div className="space-y-6 max-w-md ml-4">
-                <p className="text-[16px] font-poppins font-bold text-white leading-tight">
-                  Start your career with the most skilled programmers and designers
+                <p
+                  className={`text-[16px] font-bold text-white leading-tight font-poppins ${
+                    i18n.language === 'ar' ? 'font-bold' : ''
+                  }`}
+                >
+                  {t('hero.subtitle')}
                 </p>
-                <p className="text-[16px] font-poppins font-bold text-white leading-tight">
-                  The best solution to success
+                <p
+                  className={`text-[16px] font-bold text-white leading-tight font-poppins ${
+                    i18n.language === 'ar' ? 'font-bold' : ''
+                  }`}
+                >
+                  {t('hero.description')}
                 </p>
               </div>
               <div className="relative">
@@ -138,29 +155,41 @@ const Hero = () => {
           <img
             src={ellipse16}
             alt="Ellipse"
-            className="absolute w-18 h-18 top-32 left-1/3 transform -translate-x-1/2"
+            className="absolute w-[72px] h-[72px] top-32 left-1/3 transform -translate-x-1/2"
           />
           <img
             src={ellipse16}
             alt="Ellipse"
-            className="absolute w-18 h-18 top-40 left-16"
+            className="absolute w-[72px] h-[72px] top-40 left-16"
           />
           <img
             src={ellipse16}
             alt="Ellipse"
-            className="absolute w-18 h-18 bottom-40 left-1/4 transform -translate-x-1/2"
+            className="absolute w-[72px] h-[72px] bottom-40 left-1/4 transform -translate-x-1/2"
           />
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative pt-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 max-w-xl ml-24 mt-[-100px]">
-              <h1 className="text-[32px] lg:text-[36px] font-bold text-white dark:text-white leading-tight">
+              <h1
+                className={`text-[32px] lg:text-[36px] font-bold text-white dark:text-white leading-tight font-poppins ${
+                  i18n.language === 'ar' ? 'font-bold' : ''
+                }`}
+              >
                 {titleContentDesktop}
               </h1>
-              <p className="text-[20px] font-poppins font-bold text-white leading-tight">
+              <p
+                className={`text-[20px] font-bold text-white leading-tight font-poppins ${
+                  i18n.language === 'ar' ? 'font-bold' : ''
+                }`}
+              >
                 {t('hero.subtitle')}
               </p>
-              <p className="text-[20px] font-poppins font-bold text-white leading-tight">
+              <p
+                className={`text-[20px] font-bold text-white leading-tight font-poppins ${
+                  i18n.language === 'ar' ? 'font-bold' : ''
+                }`}
+              >
                 {t('hero.description')}
               </p>
             </div>

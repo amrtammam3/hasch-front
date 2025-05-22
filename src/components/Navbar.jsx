@@ -1,156 +1,190 @@
+
+
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import Logo from '../assets/images/haschcode-logo.svg';
 import Frame3 from '../assets/images/Frame 3.png';
-import LandSwitchDark from '../assets/images/Land Switch - Dark.png';
 import { HiMenuAlt3, HiX } from 'react-icons/hi';
+import { IoPersonOutline } from 'react-icons/io5'; 
+import { FiChevronDown } from 'react-icons/fi';
+import { FaGlobe } from 'react-icons/fa'; 
+import ThemeToggle from '../components/ThemeToggle';
 
-// Responsive navigation bar with mobile menu and theme toggle
-const Navbar = ({ theme, setTheme }) => {
+const NAV_ITEMS = [
+  { key: 'home', path: '/' },
+  { key: 'courses', path: '/courses' },
+  { key: 'portfolio', path: '/portfolio' },
+  { key: 'news', path: '/news' },
+  { key: 'events', path: '/events' },
+  { key: 'about', path: '/about' },
+  { key: 'contact', path: '/contact' },
+];
+
+const NavLink = ({ href, children, lang }) => (
+  <a
+    href={href}
+    className="relative text-14 font-cairo font-600 text-white hover:text-gray-200 after:absolute after:bottom-[-4px] after:inset-x-0 after:w-0 hover:after:w-full after:h-[2px] after:bg-white after:transition-all after:duration-300 tracking-wider"
+    aria-label={children}
+  >
+    {children}
+  </a>
+);
+
+// Main Navbar component
+const Navbar = ({ theme: initialTheme, setTheme: setInitialTheme }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { t, i18n } = useTranslation();
+  const [theme, setTheme] = useState(initialTheme);
 
+  // Toggle mobile menu
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
 
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-    document.documentElement.dir = lng === 'ar' ? 'rtl' : 'ltr';
+  // Handle language change
+  const changeLanguage = () => {
+    const newLang = i18n.language === 'ar' ? 'en' : 'ar';
+    i18n.changeLanguage(newLang);
+    document.documentElement.dir = newLang === 'ar' ? 'rtl' : 'ltr';
   };
 
+  // Handle theme toggle
+  const handleThemeToggle = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    setInitialTheme(newTheme);
+    document.documentElement.className = newTheme;
+  };
+
+  // Prevent body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [isOpen]);
 
-  const navItems = [
-    { name: t('nav.home'), path: '/' },
-    { name: t('nav.courses'), path: '/courses' },
-    { name: t('nav.portfolio'), path: '/portfolio' },
-    { name: t('nav.news'), path: '/news' },
-    { name: t('nav.events'), path: '/events' },
-    { name: t('nav.about'), path: '/about' },
-    { name: t('nav.contact'), path: '/contact' },
-  ];
-
-  const handleThemeToggle = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-  };
+  // Set initial theme class on mount
+  useEffect(() => {
+    document.documentElement.className = theme;
+  }, [theme]);
 
   return (
-    <nav className="bg-white dark:bg-[#1a0b3a] fixed top-0 left-0 w-full z-50 shadow-md transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-wrap justify-between items-center h-20 lg:h-20">
-          <a href="/" className="flex items-center gap-2 flex-shrink-0 mx-auto lg:ml-8 lg:mx-0">
-            <img
-              src={Logo}
-              alt="HaschCode Logo"
-              className="h-10 md:h-12 lg:h-16 w-auto max-w-[44px] md:max-w-[48px] lg:max-w-[56px] object-contain"
-            />
-            <span className="text-lg md:text-xl font-semibold text-black dark:text-white">
-              HaschCode
-            </span>
-          </a>
-          <div className="hidden lg:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.path}
-                className="relative text-lg font-medium transition duration-300 text-gray-800 hover:text-black dark:text-gray-300 dark:hover:text-white after:absolute after:bottom-[-4px] after:left-0 after:w-0 hover:after:w-full after:h-[2px] after:bg-white after:transition-all after:duration-300"
+    <nav className="bg-transparent z-50 absolute top-[30px] w-full transition-colors duration-300">
+      <div className="mx-auto px-1 max-w-7xl">
+        <div className="flex items-center justify-between h-[43px]">
+          {/* Logo (Desktop) */}
+          <div className="hidden lg:flex items-center gap-2 flex-shrink-0">
+            <a href="/" className="flex items-center gap-2" aria-label="HaschCode Home">
+              <img src={Logo} alt="HaschCode Logo" className="h-[36px] w-auto object-contain" />
+              <span
+                className="text-24 text-white dark:text-white font-fahkwang font-700"
               >
-                {item.name}
-              </a>
+                HaschCode
+              </span>
+            </a>
+          </div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center gap-8">
+            {NAV_ITEMS.map((item) => (
+              <NavLink key={item.key} href={item.path} lang={i18n.language}>
+                {t(`nav.${item.key}`)}
+              </NavLink>
             ))}
           </div>
-          <div className="hidden lg:flex items-center space-x-6">
+
+          {/* Desktop Controls */}
+          <div className="hidden lg:flex items-center gap-2">
             <img
               src={Frame3}
               alt="AI Assistant"
-              className="h-18 w-auto max-w-[64px] object-contain cursor-pointer"
+              className="h-[34px] w-auto object-contain cursor-pointer"
+              aria-label="AI Assistant"
             />
-            <button
-              onClick={handleThemeToggle}
-              className="h-10 w-10 flex items-center justify-center rounded-full border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-800 transition-colors duration-300 focus:outline-none"
-              title={theme === 'dark' ? 'الوضع النهاري' : 'الوضع الليلي'}
-            >
-              {theme === 'dark' ? (
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m8.66-13.66l-.71.71M4.05 19.07l-.71.71M21 12h-1M4 12H3m16.66 4.95l-.71-.71M4.05 4.93l-.71-.71M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
-              ) : (
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" /></svg>
-              )}
-            </button>
-            <div className="flex items-center gap-2">
+            <ThemeToggle theme={theme} onToggle={handleThemeToggle} />
+            <div className="flex items-center gap-1">
               <button
-                onClick={() => changeLanguage('en')}
-                className={`text-lg ${theme === 'dark' ? 'text-white' : 'text-black'} ${i18n.language === 'en' ? 'font-bold' : ''}`}
+                onClick={changeLanguage}
+                className="text-14 font-cairo font-600 rounded px-2 py-1 transition text-white hover:text-gray-200 flex items-center"
+                aria-label="Toggle language"
               >
-                EN
+                {i18n.language === 'ar' ? 'ع' : 'E'} <FiChevronDown className="ml-1" />
               </button>
-              <span className={`text-lg ${theme === 'dark' ? 'text-white' : 'text-black'}`}>|</span>
-              <button
-                onClick={() => changeLanguage('ar')}
-                className={`text-lg ${theme === 'dark' ? 'text-white' : 'text-black'} ${i18n.language === 'ar' ? 'font-bold' : ''}`}
-              >
-                عربي
-              </button>
+              <FaGlobe className="text-14 text-white" />
             </div>
-            <button className={`text-lg ${theme === 'dark' ? 'text-white' : 'text-black'} hover:text-gray-400 transition`}>
-              Log in
+            <button
+              className={`text-14 font-cairo font-600 flex items-center rounded-lg px-4 py-2 transition ${
+                theme === 'light' ? (i18n.language === 'ar' ? 'bg-[#5B4D9D] bg-white/5 text-white shadow-md hover:bg-[#4A3D8B]' : 'bg-[#5B4D9D] text-white shadow-md hover:bg-[#4A3D8B]') : 'text-white hover:text-gray-200'
+              }`}
+              aria-label={t('common.login')}
+            >
+              <IoPersonOutline className="mr-1" /> {t('common.login')}
             </button>
           </div>
-          <div className="lg:hidden flex items-center justify-center w-full mt-2">
-            <button onClick={toggleMenu} className={`p-2 text-black dark:text-white`}>
-              {isOpen ? <HiX className="h-6 w-6" /> : <HiMenuAlt3 className="h-6 w-6" />}
+
+          {/* Mobile Layout */}
+          <div className="lg:hidden flex items-center justify-between w-full h-[43px]">
+            {/* Hamburger Menu (Left) */}
+            <button
+              onClick={toggleMenu}
+              className="p-2 text-white dark:text-white"
+              aria-label={isOpen ? 'Close menu' : 'Open menu'}
+            >
+              {isOpen ? <HiX className="h-5 w-5" /> : <HiMenuAlt3 className="h-5 w-5" />}
             </button>
+
+            {/* Logo (Center) */}
+            <a href="/" className="flex items-center gap-2 mx-auto" aria-label="HaschCode Home">
+              <img src={Logo} alt="HaschCode Logo" className="h-[36px] w-auto object-contain" />
+              <span
+                className="text-24 text-white dark:text-white font-fahkwang font-700"
+              >
+                HaschCode
+              </span>
+            </a>
+
+            {/* Language Switcher (Right) */}
+            <div className="flex items-center gap-1">
+              <button
+                onClick={changeLanguage}
+                className="text-14 font-cairo font-600 rounded px-2 py-1 transition text-white hover:text-gray-200 flex items-center"
+                aria-label="Toggle language"
+              >
+                {i18n.language === 'ar' ? 'ع' : 'E'} <FiChevronDown className="ml-1" />
+              </button>
+              <FaGlobe className="text-14 text-white" />
+            </div>
           </div>
         </div>
       </div>
+
+      {/* Mobile Menu */}
       {isOpen && (
-        <div className="bg-white dark:bg-[#1a0b3a] lg:hidden border-t border-gray-700 transition-all duration-300">
-          <div className="flex flex-col items-center px-4 py-4 space-y-4 w-full">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.path}
-                onClick={closeMenu}
-                className="text-base font-medium w-full text-center text-gray-800 hover:text-black dark:text-gray-300 dark:hover:text-white"
-              >
-                {item.name}
-              </a>
-            ))}
-            <div className="pt-4 w-full space-y-4 border-t border-gray-600 flex flex-col items-center">
-              <img src={Frame3} alt="AI Assistant" className="h-10 w-auto object-contain cursor-pointer mx-auto" />
+        <div className={`lg:hidden fixed inset-0 z-50 flex backdrop-blur-md transition-opacity duration-300 ${theme === 'dark' ? 'bg-gradient-to-b from-gray-900 to-gray-800 bg-opacity-90' : 'bg-gray-800 bg-opacity-90'}`}>
+          <div className="w-full h-full flex" style={{ direction: i18n.language === 'ar' ? 'rtl' : 'ltr' }}>
+            <div className="w-3/4 bg-transparent p-6">
               <button
-                onClick={handleThemeToggle}
-                className="h-10 w-10 flex items-center justify-center rounded-full border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-800 transition-colors duration-300 focus:outline-none mx-auto"
-                title={theme === 'dark' ? 'الوضع النهاري' : 'الوضع الليلي'}
+                onClick={closeMenu}
+                className="text-white dark:text-gray-200 hover:text-gray-300 mb-6 transition"
+                aria-label="Close menu"
               >
-                {theme === 'dark' ? (
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m8.66-13.66l-.71.71M4.05 19.07l-.71.71M21 12h-1M4 12H3m16.66 4.95l-.71-.71M4.05 4.93l-.71-.71M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
-                ) : (
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" /></svg>
-                )}
+                <HiX className="h-6 w-6" />
               </button>
-              <div className="flex flex-col gap-4 items-center">
-                <div className="flex items-center gap-2 justify-center">
-                  <button
-                    onClick={() => changeLanguage('en')}
-                    className={`text-sm ${theme === 'dark' ? 'text-white' : 'text-black'} ${i18n.language === 'en' ? 'font-bold' : ''}`}
+              <div className="flex flex-col space-y-2">
+                {NAV_ITEMS.map((item) => (
+                  <a
+                    key={item.key}
+                    href={item.path}
+                    onClick={closeMenu}
+                    className="text-white dark:text-gray-200 text-14 font-cairo font-600 hover:bg-gray-700 hover:bg-opacity-50 rounded-md px-4 py-2 transition-all duration-300"
+                    aria-label={t(`nav.${item.key}`)}
                   >
-                    EN
-                  </button>
-                  <span className={`text-sm ${theme === 'dark' ? 'text-white' : 'text-black'}`}>|</span>
-                  <button
-                    onClick={() => changeLanguage('ar')}
-                    className={`text-sm ${theme === 'dark' ? 'text-white' : 'text-black'} ${i18n.language === 'ar' ? 'font-bold' : ''}`}
-                  >
-                    عربي
-                  </button>
-                </div>
-                <button className={`text-sm ${theme === 'dark' ? 'text-white' : 'text-black'} hover:text-gray-400 transition`}>
-                  Log in
-                </button>
+                    {t(`nav.${item.key}`)}
+                  </a>
+                ))}
               </div>
             </div>
+            <div className="w-1/4" onClick={closeMenu}></div>
           </div>
         </div>
       )}

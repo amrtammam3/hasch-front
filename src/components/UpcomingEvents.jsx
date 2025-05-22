@@ -2,7 +2,6 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import event from '../assets/images/event.png';
 
-// Event card for displaying event details (desktop only)
 const EventCard = () => {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'ar';
@@ -55,7 +54,6 @@ const EventCard = () => {
   );
 };
 
-// Upcoming events section
 const UpcomingEvents = () => {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'ar';
@@ -63,21 +61,15 @@ const UpcomingEvents = () => {
   return (
     <>
 <div className="block md:hidden bg-white dark:bg-[#13022E] min-h-screen px-4 py-8">
-  {/* العنوان والدائرة */}
   <div className="relative flex items-center justify-center mb-8">
     <span className="absolute -left-2 -top-2 w-8 h-8 border-2 border-[#8169F1] opacity-40 rounded-full"></span>
     <h1 className="text-lg font-bold text-[#3A2E7B] dark:text-[#B6A7FF] text-center">Upcoming Events</h1>
   </div>
-  {/* الصورة مع الديكورات */}
   <div className="relative flex justify-center mb-8">
-    {/* إطار L ملاصق للصورة */}
     <div className="absolute left-24 top-2 z-8 flex">
-      {/* الضلع العمودي */}
       <div className="w-14 h-[220px] bg-[#3A2E7B] dark:bg-[#8169F1] rounded-bl-md"></div>
-      {/* الضلع الأفقي */}
       <div className="w-[160px] h-8 bg-[#3A2E7B] dark:bg-[#8169F1] rounded-bl-md self-end -ml-4"></div>
     </div>
-    {/* مربع الدوتس ملاصق للصورة */}
     <div className="absolute -top-4 left-20 z-40">
       <div className="grid grid-cols-4 gap-[3px]">
         {[...Array(16)].map((_, i) => (
@@ -85,7 +77,6 @@ const UpcomingEvents = () => {
         ))}
       </div>
     </div>
-    {/* الصورة */}
     <div className="relative z-30 w-[208px] h-[208px] mx-auto">
       <img
         src={event}
@@ -94,7 +85,6 @@ const UpcomingEvents = () => {
       />
     </div>
   </div>
-  {/* المحتوى */}
   <div className="w-full max-w-xs mx-auto text-left px-1">
     <h2 className="text-base font-bold text-gray-900 dark:text-white mb-2">
       Welcome To The Digital Marketing Meetup 2025

@@ -36,7 +36,6 @@ const CourseCard = ({ title, price, isFree, image, rating, students, cardHeight 
   );
 };
 
-// Main courses section displaying a grid of course cards
 const Courses = () => {
   const { t } = useTranslation();
 
