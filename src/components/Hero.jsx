@@ -1,8 +1,4 @@
 
-
-
-
-
 import { useTranslation } from 'react-i18next';
 import laptopMockup from '../assets/images/laptop-mockup.png';
 import phonemockup from '../assets/images/mobile-mockup.png';
@@ -10,50 +6,6 @@ import ellipse16 from '../assets/images/Ellipse 16.png';
 
 const Hero = () => {
   const { t, i18n } = useTranslation();
-
-  let titleContentDesktop;
-  let titleContentMobile;
-
-  if (i18n.language === 'ar') {
-    const titlePartsDesktop = 'انشئ موقعك الالكتروني بافضل'.split('موقعك الالكتروني');
-    const titlePartsMobile = 'انشئ موقعك الالكتروني بافضل واذكي طريقة'.split('موقعك الالكتروني');
-    
-    titleContentDesktop = (
-      <>
-        {titlePartsDesktop[0]}
-        <span className="text-[#1DBFFE]">موقعك الالكتروني</span>
-        {titlePartsDesktop[1]}
-        <br />
-        واذكي طريقة
-      </>
-    );
-    titleContentMobile = (
-      <>
-        {titlePartsMobile[0]}
-        <span className="text-[#1DBFFE]">موقعك الالكتروني</span>
-        {titlePartsMobile[1]}
-      </>
-    );
-  } else {
-    const titleParts = t('hero.title')?.split('Website') ?? ['Build Your ', ' in smart'];
-    titleContentDesktop = (
-      <>
-        {titleParts[0]}
-        <span className="text-[#1DBFFE]">Website</span>
-        {' in smart'}
-     
-      </>
-    );
-    titleContentMobile = (
-      <>
-        {titleParts[0]}
-        <span className="text-[#1DBFFE]">Website</span>
-        {' in'}
-        <br />
-        smart way
-      </>
-    );
-  }
 
   return (
     <>
@@ -83,7 +35,13 @@ const Hero = () => {
                 i18n.language === 'ar' ? 'font-bold' : ''
               }`}
             >
-              {titleContentMobile}
+              {i18n.language === 'ar' ? t('hero.title') : (
+                <>
+                  Build Your <span className="text-[#1DBFFE]">Website</span> In Smart{' '}
+                  <br />
+                  Way
+                </>
+              )}
             </h1>
             <div className="flex flex-row items-center justify-between w-full">
               <div className="space-y-6 max-w-md ml-4">
@@ -176,7 +134,19 @@ const Hero = () => {
                   i18n.language === 'ar' ? 'font-bold' : ''
                 }`}
               >
-                {titleContentDesktop}
+                {i18n.language === 'ar' ? (
+                  <>
+                    انشئ{' '}
+                    <span className="text-[#1DBFFE]">موقعك الالكتروني</span>{' '}
+                    بافضل واذكي طريقة
+                  </>
+                ) : (
+                  <>
+                    Build Your <span className="text-[#1DBFFE]">Website</span> In Smart{' '}
+                    <br />
+                    Way
+                  </>
+                )}
               </h1>
               <p
                 className={`text-[20px] font-bold text-white leading-tight font-poppins ${

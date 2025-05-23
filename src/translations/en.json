@@ -34,6 +34,8 @@
     "getItDone": "Get it done",
     "welcomeToFlash": "Welcome to Flash",
     "nature": "Nature",
+        "viewMore": "View More",
+
     "digitalArt": "Digital Art",
     "modernDesign": "Modern Design",
     "natureBeauty": "Nature Beauty",
@@ -75,7 +77,7 @@
   },
   "testimonials": {
     "title": "see what our ",
-    "subtitle": "student say",
+    "subtitle": "student say....",
     "testimonial1": {
       "name": "Ahmed Salem",
       "text": "This Course is Awesome I Went From Knowing Nothing About Coding To Landing My First Job As A Frontend Developer Within 6 Months"
