@@ -1,15 +1,16 @@
-
-
 import React, { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+import clsx from 'clsx';
 import Logo from '../assets/images/haschcode-logo.svg';
 import Frame3 from '../assets/images/Frame 3.png';
 import { HiMenuAlt3, HiX } from 'react-icons/hi';
-import { IoPersonOutline } from 'react-icons/io5'; 
-import { FiChevronDown } from 'react-icons/fi';
-import { FaGlobe } from 'react-icons/fa'; 
-import ThemeToggle from '../components/ThemeToggle';
+import { IoPersonOutline } from 'react-icons/io5';
+import { FaGlobe } from 'react-icons/fa';
+import ThemeToggle from '../components/ThemeToggle.jsx';
+import MobileMenu from '../components/MobileMenu.jsx';
+import { useLanguage, LANGS } from '../context/LanguageContext.jsx';
+import { useTheme } from '../context/ThemeContext.jsx';
 
+// Array of navigation items with keys and paths
 const NAV_ITEMS = [
   { key: 'home', path: '/' },
   { key: 'courses', path: '/courses' },
@@ -20,7 +21,8 @@ const NAV_ITEMS = [
   { key: 'contact', path: '/contact' },
 ];
 
-const NavLink = ({ href, children, lang }) => (
+// Component for rendering individual navigation links
+const NavLink = ({ href, children }) => (
   <a
     href={href}
     className="relative text-14 font-cairo font-600 text-white hover:text-gray-200 after:absolute after:bottom-[-4px] after:inset-x-0 after:w-0 hover:after:w-full after:h-[2px] after:bg-white after:transition-all after:duration-300 tracking-wider"
@@ -30,32 +32,65 @@ const NavLink = ({ href, children, lang }) => (
   </a>
 );
 
-// Main Navbar component
-const Navbar = ({ theme: initialTheme, setTheme: setInitialTheme }) => {
+// Component for rendering the language selection dropdown
+const LanguageDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { t, i18n } = useTranslation();
-  const [theme, setTheme] = useState(initialTheme);
+  const { t, currentLang, changeLanguage } = useLanguage();
 
-  // Toggle mobile menu
+  // Toggle the dropdown visibility
+  const toggleDropdown = () => setIsOpen(!isOpen);
+
+  // Handle language selection and close dropdown
+  const handleLanguageChange = (lang) => {
+    changeLanguage(lang);
+    setIsOpen(false);
+  };
+
+  return (
+    <div className="relative flex items-center">
+      <button
+        onClick={toggleDropdown}
+        className="text-14 font-cairo font-600 rounded px-2 py-1 transition text-white hover:text-gray-200 flex items-center"
+        aria-label="Toggle language dropdown"
+      >
+        {currentLang === LANGS.AR ? 'ع' : 'EN'}
+        <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+        </svg>
+      </button>
+      {isOpen && (
+        <div className="absolute top-full mt-2 w-32 bg-white dark:bg-gray-800 rounded-md shadow-lg z-50">
+          <button
+            onClick={() => handleLanguageChange(LANGS.EN)}
+            className="block w-full text-left px-4 py-2 text-14 font-cairo font-600 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+          >
+            English
+          </button>
+          <button
+            onClick={() => handleLanguageChange(LANGS.AR)}
+            className="block w-full text-left px-4 py-2 text-14 font-cairo font-600 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+          >
+            العربية
+          </button>
+        </div>
+      )}
+    </div>
+  );
+};
+
+// Main Navbar component
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const { t, currentLang } = useLanguage();
+  const { theme } = useTheme();
+
+  // Toggle the mobile menu visibility
   const toggleMenu = () => setIsOpen(!isOpen);
+  
+  // Close the mobile menu
   const closeMenu = () => setIsOpen(false);
 
-  // Handle language change
-  const changeLanguage = () => {
-    const newLang = i18n.language === 'ar' ? 'en' : 'ar';
-    i18n.changeLanguage(newLang);
-    document.documentElement.dir = newLang === 'ar' ? 'rtl' : 'ltr';
-  };
-
-  // Handle theme toggle
-  const handleThemeToggle = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    setInitialTheme(newTheme);
-    document.documentElement.className = newTheme;
-  };
-
-  // Prevent body scroll when mobile menu is open
+  // Manage body overflow when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : '';
     return () => {
@@ -63,68 +98,58 @@ const Navbar = ({ theme: initialTheme, setTheme: setInitialTheme }) => {
     };
   }, [isOpen]);
 
-  // Set initial theme class on mount
-  useEffect(() => {
-    document.documentElement.className = theme;
-  }, [theme]);
-
   return (
-    <nav className="bg-transparent z-50 absolute top-[30px] w-full transition-colors duration-300">
+    <nav className="bg-transparent z-50 absolute top-[30px] w-full transition-colors duration-300" role="navigation">
       <div className="mx-auto px-1 max-w-7xl">
         <div className="flex items-center justify-between h-[43px]">
-          {/* Logo (Desktop) */}
+          {/* Logo and brand name for desktop view */}
           <div className="hidden lg:flex items-center gap-2 flex-shrink-0">
             <a href="/" className="flex items-center gap-2" aria-label="HaschCode Home">
               <img src={Logo} alt="HaschCode Logo" className="h-[36px] w-auto object-contain" />
-              <span
-                className="text-24 text-white dark:text-white font-fahkwang font-700"
-              >
+              <span className="text-24 text-white dark:text-white font-fahkwang font-700">
                 HaschCode
               </span>
             </a>
           </div>
 
-          {/* Desktop Navigation */}
+          {/* Navigation links for desktop view */}
           <div className="hidden lg:flex items-center gap-8">
             {NAV_ITEMS.map((item) => (
-              <NavLink key={item.key} href={item.path} lang={i18n.language}>
+              <NavLink key={item.key} href={item.path}>
                 {t(`nav.${item.key}`)}
               </NavLink>
             ))}
           </div>
 
-          {/* Desktop Controls */}
-          <div className="hidden lg:flex items-center gap-2">
+          {/* Right-side controls for desktop view (AI Assistant, Theme Toggle, Language Dropdown, Login) */}
+          <div className="hidden lg:flex items-center gap-1.5">
             <img
               src={Frame3}
               alt="AI Assistant"
               className="h-[34px] w-auto object-contain cursor-pointer"
               aria-label="AI Assistant"
             />
-            <ThemeToggle theme={theme} onToggle={handleThemeToggle} />
-            <div className="flex items-center gap-1">
-              <button
-                onClick={changeLanguage}
-                className="text-14 font-cairo font-600 rounded px-2 py-1 transition text-white hover:text-gray-200 flex items-center"
-                aria-label="Toggle language"
-              >
-                {i18n.language === 'ar' ? 'ع' : 'E'} <FiChevronDown className="ml-1" />
-              </button>
+            <ThemeToggle />
+            <div className="flex items-center gap-0.5">
+              <LanguageDropdown />
               <FaGlobe className="text-14 text-white" />
             </div>
             <button
-              className={`text-14 font-cairo font-600 flex items-center rounded-lg px-4 py-2 transition ${
-                theme === 'light' ? (i18n.language === 'ar' ? 'bg-[#5B4D9D] bg-white/5 text-white shadow-md hover:bg-[#4A3D8B]' : 'bg-[#5B4D9D] text-white shadow-md hover:bg-[#4A3D8B]') : 'text-white hover:text-gray-200'
-              }`}
+              className={clsx(
+                'text-14 font-cairo font-600 flex items-center rounded-lg px-4 py-2 transition',
+                theme === 'light' && currentLang === LANGS.AR
+                  ? 'bg-primary bg-white/5 text-textWhite shadow-md hover:bg-primaryHover'
+                  : 'text-textWhite hover:text-textGray'
+              )}
               aria-label={t('common.login')}
             >
               <IoPersonOutline className="mr-1" /> {t('common.login')}
             </button>
           </div>
 
-          {/* Mobile Layout */}
+          {/* Mobile view layout */}
           <div className="lg:hidden flex items-center justify-between w-full h-[43px]">
-            {/* Hamburger Menu (Left) */}
+            {/* Menu toggle button */}
             <button
               onClick={toggleMenu}
               className="p-2 text-white dark:text-white"
@@ -133,61 +158,25 @@ const Navbar = ({ theme: initialTheme, setTheme: setInitialTheme }) => {
               {isOpen ? <HiX className="h-5 w-5" /> : <HiMenuAlt3 className="h-5 w-5" />}
             </button>
 
-            {/* Logo (Center) */}
+            {/* Logo and brand name for mobile view */}
             <a href="/" className="flex items-center gap-2 mx-auto" aria-label="HaschCode Home">
               <img src={Logo} alt="HaschCode Logo" className="h-[36px] w-auto object-contain" />
-              <span
-                className="text-24 text-white dark:text-white font-fahkwang font-700"
-              >
+              <span className="text-24 text-white dark:text-white font-fahkwang font-700">
                 HaschCode
               </span>
             </a>
 
-            {/* Language Switcher (Right) */}
-            <div className="flex items-center gap-1">
-              <button
-                onClick={changeLanguage}
-                className="text-14 font-cairo font-600 rounded px-2 py-1 transition text-white hover:text-gray-200 flex items-center"
-                aria-label="Toggle language"
-              >
-                {i18n.language === 'ar' ? 'ع' : 'E'} <FiChevronDown className="ml-1" />
-              </button>
+            {/* Language dropdown and globe icon for mobile view */}
+            <div className="flex items-center gap-0.5">
+              <LanguageDropdown />
               <FaGlobe className="text-14 text-white" />
             </div>
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className={`lg:hidden fixed inset-0 z-50 flex backdrop-blur-md transition-opacity duration-300 ${theme === 'dark' ? 'bg-gradient-to-b from-gray-900 to-gray-800 bg-opacity-90' : 'bg-gray-800 bg-opacity-90'}`}>
-          <div className="w-full h-full flex" style={{ direction: i18n.language === 'ar' ? 'rtl' : 'ltr' }}>
-            <div className="w-3/4 bg-transparent p-6">
-              <button
-                onClick={closeMenu}
-                className="text-white dark:text-gray-200 hover:text-gray-300 mb-6 transition"
-                aria-label="Close menu"
-              >
-                <HiX className="h-6 w-6" />
-              </button>
-              <div className="flex flex-col space-y-2">
-                {NAV_ITEMS.map((item) => (
-                  <a
-                    key={item.key}
-                    href={item.path}
-                    onClick={closeMenu}
-                    className="text-white dark:text-gray-200 text-14 font-cairo font-600 hover:bg-gray-700 hover:bg-opacity-50 rounded-md px-4 py-2 transition-all duration-300"
-                    aria-label={t(`nav.${item.key}`)}
-                  >
-                    {t(`nav.${item.key}`)}
-                  </a>
-                ))}
-              </div>
-            </div>
-            <div className="w-1/4" onClick={closeMenu}></div>
-          </div>
-        </div>
-      )}
+      {/* Mobile menu component */}
+      <MobileMenu isOpen={isOpen} closeMenu={closeMenu} theme={theme} navItems={NAV_ITEMS} />
     </nav>
   );
 };

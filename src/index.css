@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap&subset=arabic');
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600&display=swap');
+
 
 @tailwind base;
 @tailwind components;
@@ -22,15 +24,20 @@
   .font-poppins {
     font-family: 'Poppins', sans-serif !important;
   }
+.font-readex {
+  font-family: 'Readex Pro', sans-serif !important;
+}
+
 
   /* اتجاه النص */
   [dir="ltr"] {
     font-family: 'Poppins', sans-serif;
   }
   [dir="rtl"] {
-    font-family: 'Poppins', sans-serif; /* Poppins للعربية كما طلبت */
+    font-family: 'Poppins', sans-serif !important;
     text-align: right;
   }
+
 
   /* RTL Support */
   [dir="rtl"] .ml-24 {
