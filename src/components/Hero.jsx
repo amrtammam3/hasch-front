@@ -195,12 +195,12 @@ const Hero = () => {
       >
         {/* Background circles (hidden on mobile) */}
         <HeroBackground />
-        <div className="max-w-7xl mx-auto px-4 relative pt-0">
+        <div className="max-w-7xl mx-auto px-8 relative pt-0">
           <div className="flex flex-col">
             {/* Text content on mobile */}
             <HeroText isDesktop={false} />
             <div className="flex flex-row items-center justify-between w-full">
-              <div className="space-y-6 max-w-md ml-4">
+              <div className="space-y-2 max-w-md ml-9">
                 {/* Subtitle */}
                 <p
                   className={clsx(

@@ -71,7 +71,7 @@ const OnlineClasses = () => {
   const isArabic = i18n.resolvedLanguage === 'ar' || localStorage.getItem('i18nextLng') === 'ar';
 
   return (
-    <div className="bg-white dark:bg-[#13022E] py-20 transition-colors duration-300 relative overflow-hidden mt-8">
+    <div className="bg-white dark:bg-[#13022E] py-20 transition-colors duration-300 relative overflow-hidden">
       {/* Decorative circles styled like the Portfolio component */}
       <span className={clsx(
         'absolute w-20 h-20 border-2 border-[#8169F1] opacity-30 rounded-full',

@@ -1,25 +1,28 @@
 
-
-
+// Import React and i18n translation hook
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+
+// Import portfolio images
 import portfolio1 from '../assets/images/portfolio1.png';
 import portfolio2 from '../assets/images/portfolio2.png';
 import portfolio3 from '../assets/images/portfolio3.png';
 import portfolio6 from '../assets/images/portfolio6.png';
 
+// Define Portfolio component
 const Portfolio = () => {
-  const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation(); // Access translation function and language info
 
   // Determine if the current language is Arabic
   const isArabic = i18n.language === 'ar';
 
+  // Define the list of projects to display
   const projects = [
     {
       id: 1,
-      title: t('portfolio.getItDone'),
+      title: t('portfolio.getItDone'), // Translated project title
       image: portfolio1,
-      category: t('portfolio.categories.webDesign')
+      category: t('portfolio.categories.webDesign') // Translated category
     },
     {
       id: 2,
@@ -55,19 +58,24 @@ const Portfolio = () => {
 
   return (
     <>
-      {/* Mobile View */}
+      {/* Mobile View Layout */}
       <div className="block md:hidden relative bg-white dark:bg-[#1A0B2E] py-10 min-h-screen overflow-hidden">
+        {/* Decorative background circles */}
         <span className="absolute top-0 left-0 w-20 h-20 border-2 border-[#8169F1] opacity-30 rounded-full"></span>
         <span className="absolute top-1/2 right-0 w-16 h-16 border-2 border-[#8169F1] opacity-30 rounded-full"></span>
         <span className="absolute bottom-0 left-1/2 w-20 h-20 border-2 border-[#8169F1] opacity-30 rounded-full"></span>
+
+        {/* Section title */}
         <h2 className={`text-xl font-bold text-[#3A2E7B] dark:text-[#1DBFFE] text-center mb-8 ${isArabic ? 'font-cairo' : ''}`}>
           {t('portfolio.title')}
         </h2>
+
+        {/* Grid of portfolio images */}
         <div className="grid grid-cols-3 gap-3 px-2" dir="ltr">
           {projects.map((project, idx) => {
             let extraClass = "";
-            if (idx === 0) extraClass = "rounded-tl-[60px]";
-            if (idx === 5) extraClass = "rounded-br-[60px]";
+            if (idx === 0) extraClass = "rounded-tl-[60px]"; // Top-left rounded corner for first image
+            if (idx === 5) extraClass = "rounded-br-[60px]"; // Bottom-right rounded corner for last image
             return (
               <div key={project.id} className={`overflow-hidden ${extraClass}`}>
                 <img
@@ -79,6 +87,8 @@ const Portfolio = () => {
             );
           })}
         </div>
+
+        {/* Language info and "View More" button */}
         <div className="flex justify-end px-4 mt-10 items-center gap-2">
           <span className={`text-white text-sm ${isArabic ? 'font-cairo' : ''}`}>Current language: {i18n.language}</span>
           <button
@@ -88,22 +98,29 @@ const Portfolio = () => {
           </button>
         </div>
       </div>
-      {/* Desktop View */}
+
+      {/* Desktop View Layout */}
       <div className="hidden md:block relative bg-white dark:bg-[#1A0B2E] py-20 transition-colors duration-300 overflow-hidden">
+        {/* Decorative background circles */}
         <span className="absolute top-0 left-0 w-32 h-32 border-2 border-[#8169F1] opacity-30 rounded-full md:w-40 md:h-40"></span>
         <span className="absolute top-1/2 right-0 w-24 h-24 border-2 border-[#8169F1] opacity-30 rounded-full md:w-32 md:h-32"></span>
         <span className="absolute bottom-0 left-1/2 w-32 h-32 border-2 border-[#8169F1] opacity-30 rounded-full md:w-40 md:h-40"></span>
+
+        {/* Container for content */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section title */}
           <div className="text-center mb-12">
             <h2 className={`text-3xl md:text-4xl font-bold text-primary dark:text-[#1DBFFE] mb-4 ${isArabic ? 'font-cairo' : ''}`}>
               {t('portfolio.title')}
             </h2>
           </div>
+
+          {/* Grid of portfolio images */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" dir="ltr">
             {projects.map((project, idx) => {
               let extraClass = "";
-              if (idx === 0) extraClass = "rounded-tl-[60px]";
-              if (idx === 5) extraClass = "rounded-br-[60px]";
+              if (idx === 0) extraClass = "rounded-tl-[60px]"; // Top-left rounded corner
+              if (idx === 5) extraClass = "rounded-br-[60px]"; // Bottom-right rounded corner
               return (
                 <div
                   key={project.id}
@@ -118,6 +135,8 @@ const Portfolio = () => {
               );
             })}
           </div>
+
+          {/* "View More" button */}
           <div className="flex justify-end mt-14 items-center gap-2">
             <button
               className={`text-white px-10 py-2 rounded-lg bg-gradient-to-b from-secondary to-primary hover:from-primary hover:to-secondary transition dark:from-[#1DBFFE] dark:to-[#4A3D8B] ${isArabic ? 'font-cairo' : ''}`}
@@ -131,4 +150,4 @@ const Portfolio = () => {
   );
 };
 
-export default Portfolio;
+export default Portfolio; // Export the Portfolio component
