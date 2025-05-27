@@ -38,7 +38,6 @@ const Testimonials = () => {
 
   return (
     <>
-      {/* Mobile version section */}
       <div
         dir={isArabic ? 'rtl' : 'ltr'} // Direction of text depending on language
         className="block md:hidden min-h-screen bg-gradient-to-r from-[#4A3D8B] via-[#51449C] to-[#4A3D8B] px-4 py-8 relative overflow-hidden dark:bg-gradient-to-r dark:from-[#4A3D8B] dark:to-[#13022E]"
@@ -70,10 +69,13 @@ const Testimonials = () => {
         </div>
 
         {/* Testimonial card */}
-        <div
-          className={isArabic ? 'relative bg-transparent rounded-2xl px-4 py-6 mb-8 border-2 border-dashed border-[#1DBFFE] w-[90%] mx-auto mt-8' : 'relative bg-transparent rounded-2xl px-4 py-6 mb-8 border-2 border-dashed border-[#1DBFFE] w-[90%] mx-auto'}
-          style={{ maxWidth: '400px', minHeight: '250px' }}
-        >
+            <div
+            className={isArabic 
+              ? 'relative bg-transparent rounded-2xl px-4 py-6 mb-8 mt-16 border-2 border-dashed border-[#1DBFFE] w-[90%] mx-auto' 
+              : 'relative bg-transparent rounded-2xl px-4 py-6 mb-8 mt-8 border-2 border-dashed border-[#1DBFFE] w-[90%] mx-auto'}
+            style={{ maxWidth: '400px', minHeight: '250px' }}
+          >
+
           <div className="flex items-center mb-4">
             {isArabic ? (
               // Layout for Arabic - image, name, quote mark from right to left
@@ -165,7 +167,6 @@ const Testimonials = () => {
               <p className="hidden"></p>
             </div>
 
-            {/* Main content: testimonial card + image */}
             <div className="relative flex flex-col md:flex-row items-center justify-between gap-12">
               {/* Testimonial card */}
               <div className="w-full md:w-1/2 flex flex-col items-center">

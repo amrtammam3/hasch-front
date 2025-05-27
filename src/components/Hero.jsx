@@ -68,7 +68,7 @@ const HeroText = ({ isDesktop }) => {
   // Classes for the title (text size varies based on screen size)
   const titleClass = clsx(
     baseTextClass,
-    isDesktop ? 'text-[32px] lg:text-[32px]' : 'text-[32px] mb-8 ml-4',
+    isDesktop ? 'text-[32px] lg:text-[32px]' : 'text-[24px] mb-6 ml-4',
   );
 
   // Classes for the paragraph (medium weight, text size varies based on screen size)
@@ -108,8 +108,8 @@ const HeroText = ({ isDesktop }) => {
 const HeroImages = ({ isDesktop, isArabic }) => {
   // Determine the position of the phone mockup based on language and screen size
   const phonePosition = isArabic
-    ? (isDesktop ? 'left-[-75px] top-[77%]' : 'right-2 top-[70%]')
-    : (isDesktop ? '-right-20 top-[77%]' : '-right-2 top-[80%]');
+    ? (isDesktop ? 'left-[-75px] top-[77%]' : 'right-44 top-[65%]')
+    : (isDesktop ? '-right-20 top-[77%]' : '-right-3 top-[65%]');
 
   return (
     // Container for images with layering and transformations
@@ -119,15 +119,17 @@ const HeroImages = ({ isDesktop, isArabic }) => {
         <img
           src={laptopMockup}
           alt="Laptop Mockup"
-          className={clsx('w-full', isDesktop ? 'max-w-3xl scale-110' : 'max-w-lg scale-90')}
+          className={clsx(
+            'w-full', isDesktop ? 'max-w-3xl scale-110' : 'max-w-lg scale-110')}
           loading="lazy"
+          
         />
         {/* Phone mockup image */}
         <img
           src={phonemockup}
           alt="Phone Mockup"
           className={clsx(
-            'absolute top-[70%] transform -translate-y-1/2 scale-110',
+            'absolute top-[70%] transform -translate-y-1/2 scale-120',
             isDesktop ? 'w-1/3' : 'w-2/5',
             phonePosition,
           )}
@@ -139,40 +141,76 @@ const HeroImages = ({ isDesktop, isArabic }) => {
 };
 
 // Subcomponent to display the SVG wave at the bottom
+// const HeroWave = () => (
+//   <div className="absolute bottom-0 left-0 right-0">
+//     {/* SVG containing three wave layers */}
+//     <svg
+//       className="w-full"
+//       height="600"
+//       viewBox="0 0 1440 400"
+//       fill="none"
+//       xmlns="http://www.w3.org/2000/svg"
+//       preserveAspectRatio="none"
+//     >
+//       {/* First layer - lightest color */}
+//       <path
+//         d="M0 150 Q360 400 720 350 T1440 250 L1440 400 L0 400 Z"
+//         fill="#E8E4F7"
+//         fillOpacity="0.8"
+//         className="dark:fill-[#13022E]"
+//       />
+//       {/* Second layer - medium transparency */}
+//       <path
+//         d="M0 180 Q360 430 720 380 T1440 280 L1440 400 L0 400 Z"
+//         fill="#E8E4F7"
+//         fillOpacity="0.4"
+//         className="dark:fill-[#4A3D8B]"
+//       />
+//       {/* Third layer - darkest color */}
+//       <path
+//         d="M0 210 Q330 460 720 410 T1440 310 L1440 400 L0 400 Z"
+//         fill="#FFFFFF"
+//         className="dark:fill-[#13022E]"
+//       />
+//     </svg>
+//   </div>
+// );
+
+
 const HeroWave = () => (
-  <div className="absolute bottom-0 left-0 right-0">
-    {/* SVG containing three wave layers */}
+  <div className="absolute bottom-0 left-0 right-0 overflow-hidden">
     <svg
       className="w-full"
-      height="600"
-      viewBox="0 0 1440 400"
+      height="350"
+      viewBox="0 0 1440 320"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="none"
     >
-      {/* First layer - lightest color */}
+      {/* الطبقة الأولى - بيضاوي سلس */}
       <path
-        d="M0 150 Q360 400 720 350 T1440 250 L1440 400 L0 400 Z"
+        d="m0,10 Q720,340 1440,180 L1440,320 L0,320 Z"
         fill="#E8E4F7"
         fillOpacity="0.8"
         className="dark:fill-[#13022E]"
       />
-      {/* Second layer - medium transparency */}
+      {/* الطبقة الثانية - خلفية أعمق */}
       <path
-        d="M0 180 Q360 430 720 380 T1440 280 L1440 400 L0 400 Z"
+        d="M0,80 Q720,320 1440,280 L1440,320 L0,320 Z"
         fill="#E8E4F7"
         fillOpacity="0.4"
         className="dark:fill-[#4A3D8B]"
       />
-      {/* Third layer - darkest color */}
+      {/* الطبقة الثالثة - أعمق طبقة */}
       <path
-        d="M0 210 Q330 460 720 410 T1440 310 L1440 400 L0 400 Z"
+        d="M0,150 Q920,440 1440,250 L1440,380 L0,340 Z"
         fill="#FFFFFF"
         className="dark:fill-[#13022E]"
       />
     </svg>
   </div>
 );
+
 
 // Main Hero component
 const Hero = () => {
@@ -200,25 +238,26 @@ const Hero = () => {
             {/* Text content on mobile */}
             <HeroText isDesktop={false} />
             <div className="flex flex-row items-center justify-between w-full">
-              <div className="space-y-2 max-w-md ml-9">
+              <div className="mb-14 space-y-2 max-w-md ml-9">
                 {/* Subtitle */}
                 <p
                   className={clsx(
-                    'text-[16px] font-poppins font-bold text-white leading-tight',
-                    isArabic && 'font-bold',
+                    'text-[13px] font-poppins font-bold text-white leading-tight',
+                  isArabic ? 'font-bold' : 'font-medium'
                   )}
                 >
                   {t('hero.subtitle')}
                 </p>
                 {/* Description */}
                 <p
-                  className={clsx(
-                    'text-[16px] font-poppins font-bold text-white leading-tight',
-                    isArabic && 'font-bold',
-                  )}
-                >
-                  {t('hero.description')}
+                className={clsx(
+                  'text-[13px] text-white leading-tight font-poppins',
+                  isArabic ? 'font-bold' : 'font-medium'
+                )}
+              >
+                {t('hero.description')}
                 </p>
+
               </div>
               {/* Images on mobile */}
               <HeroImages isDesktop={false} isArabic={isArabic} />

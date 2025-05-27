@@ -110,7 +110,7 @@ const Courses = () => {
         {/* Button */}
         <div className="flex justify-end px-4 mt-10">
           <button
-            className={`text-white px-8 py-2 rounded-full bg-gradient-to-b from-[#1DBFFE] to-[#4A3D8B] text-base font-semibold shadow ${isArabic ? 'font-cairo' : ''}`}
+            className={`text-white px-8 py-2 rounded-lg bg-gradient-to-b from-[#1DBFFE] to-[#4A3D8B] text-base font-semibold shadow ${isArabic ? 'font-cairo' : ''}`}
           >
             {t('courses.viewMore')}
           </button>

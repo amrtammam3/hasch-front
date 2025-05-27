@@ -4,7 +4,7 @@ import onlineclasses from '../assets/images/onlineclasses.png';
 
 // Subcomponent to display the image
 const ClassImage = ({ isDesktop, isArabic }) => (
-  <div className={clsx('relative', isDesktop ? 'w-[80%] mx-auto' : 'w-[90%] mx-auto')}>
+  <div className={clsx('relative', isDesktop ? 'w-[80%] mx-auto' : 'w-[80%] mx-auto')}>
     {/* Image container with blur effect */}
     <div className="rounded-lg overflow-hidden relative" style={{ zIndex: 1 }}>
       <img
@@ -18,6 +18,56 @@ const ClassImage = ({ isDesktop, isArabic }) => (
 );
 
 // Subcomponent to display text and features
+// const ClassText = ({ isDesktop, isArabic }) => {
+//   const { t } = useTranslation();
+
+//   const features = [
+//     t('onlineClasses.features.comprehensive'),
+//     t('onlineClasses.features.expert'),
+//     t('onlineClasses.features.weekly'),
+//     t('onlineClasses.features.community'),
+//     t('onlineClasses.features.certification'),
+//   ];
+
+//   const baseTextClass = clsx(
+//     'text-gray-900 dark:text-white leading-tight',
+//     isArabic && 'font-cairo'
+//   );
+
+//   const titleClass = clsx(
+//     'font-bold leading-tight text-[#4A3D8B]',
+//     isDesktop ? 'text-3xl' : 'text-20',
+//     isArabic && 'font-cairo'
+//   );
+
+// const subtitleClass = clsx(
+//   baseTextClass,
+//   isArabic ? 'font-bold' : 'font-bold',
+//   isDesktop ? 'text-lg' : 'text-base',
+// );
+
+
+//   return (
+//     <div className={clsx(isDesktop ? 'space-y-6' : 'space-y-4 text-left pr-9 pl-12')}>
+//       <h2 className={titleClass} aria-label={t('onlineClasses.title')}>
+//         {t('onlineClasses.title')}
+//       </h2>
+//       <p className={baseTextClass}>{t('onlineClasses.description1')}</p>
+//       <p className={baseTextClass}>{t('onlineClasses.description2')}</p>
+//       <h3 className={subtitleClass}>{t('onlineClasses.description3')}</h3>
+//       <div className="space-y-3">
+//         {features.map((feature, index) => (
+//           <div key={index} className="flex items-start space-x-1">
+//             <span className="text-gray-900 dark:text-white text-sm">•</span>
+//             <span className={clsx(baseTextClass, 'text-sm')}>{feature}</span>
+//           </div>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
+
+
 const ClassText = ({ isDesktop, isArabic }) => {
   const { t } = useTranslation();
 
@@ -30,32 +80,45 @@ const ClassText = ({ isDesktop, isArabic }) => {
   ];
 
   const baseTextClass = clsx(
-    'text-gray-900 dark:text-white leading-tight',
-    isArabic && 'font-cairo font-normal'
+    'text-gray-900 dark:text-white leading-tight font-SemiBold',
+    isArabic && 'font-cairo'
   );
 
   const titleClass = clsx(
     'font-bold leading-tight text-[#4A3D8B]',
-    isDesktop ? 'text-3xl' : 'text-24',
+    isDesktop ? 'text-3xl' : 'text-20',
     isArabic && 'font-cairo'
   );
 
   const subtitleClass = clsx(
     baseTextClass,
-    'font-bold',
+    isArabic ? 'font-bold' : 'font-bold',
     isDesktop ? 'text-lg' : 'text-base'
   );
 
   return (
-    <div className={clsx(isDesktop ? 'space-y-6' : 'space-y-4 text-left pr-8 pl-4')}>
+    <div
+      className={clsx(
+        isDesktop ? 'space-y-6' : 'space-y-4',
+        isArabic ? 'text-right pr-12 pl-9' : 'text-left pr-9 pl-12' // Adjust padding and alignment for RTL
+      )}
+      dir={isArabic ? 'rtl' : 'ltr'} // Set text direction
+    >
       <h2 className={titleClass} aria-label={t('onlineClasses.title')}>
         {t('onlineClasses.title')}
       </h2>
       <p className={baseTextClass}>{t('onlineClasses.description1')}</p>
+      <p className={baseTextClass}>{t('onlineClasses.description2')}</p>
       <h3 className={subtitleClass}>{t('onlineClasses.description3')}</h3>
       <div className="space-y-3">
         {features.map((feature, index) => (
-          <div key={index} className="flex items-start space-x-1">
+          <div
+            key={index}
+            className={clsx(
+              'flex items-start',
+              isArabic ? 'space-x-reverse space-x-1' : 'space-x-1' // Reverse spacing for RTL
+            )}
+          >
             <span className="text-gray-900 dark:text-white text-sm">•</span>
             <span className={clsx(baseTextClass, 'text-sm')}>{feature}</span>
           </div>
@@ -74,10 +137,10 @@ const OnlineClasses = () => {
     <div className="bg-white dark:bg-[#13022E] py-20 transition-colors duration-300 relative overflow-hidden">
       {/* Decorative circles styled like the Portfolio component */}
       <span className={clsx(
-        'absolute w-20 h-20 border-2 border-[#8169F1] opacity-30 rounded-full',
-        isArabic ? 'top-0 right-0 translate-x-10 -translate-y-10' : 'top-0 left-0 -translate-x-10 -translate-y-10',
-        'md:w-32 md:h-32'
+        'block absolute w-[80px] h-[80px] border-2 border-[#8169F1] opacity-30 rounded-full',
+        isArabic ? 'top-20 right-60 translate-x-20 -translate-y-70' : 'top-0 left-0 -translate-x-10 -translate-y-10'
       )}></span>
+
       <span className={clsx(
         'absolute w-20 h-20 border-2 border-[#8169F1] opacity-30 rounded-full',
         isArabic ? 'top-0 left-0 -translate-x-10 -translate-y-10' : 'top-0 right-0 translate-x-10 -translate-y-10',
