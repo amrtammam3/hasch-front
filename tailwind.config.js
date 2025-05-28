@@ -4,6 +4,10 @@ export default {
   content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+
+      screens: {
+        'intermediate': {'min': '768px', 'max': '1023px'}, // النطاق الوسيط من 768px إلى 1023px فقط
+      },
       colors: {
         primary: "#4A3D8B",
         secondary: "#1DBFFE",

@@ -19,7 +19,7 @@ const EventCard = () => {
   return (
     <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12 relative" dir={isRTL ? 'rtl' : 'ltr'}>
       <div className="relative w-full max-w-[520px] mx-auto">
-        <div className={`absolute ${isRTL ? 'right-1' : 'left-1'} top-12 w-[480px] h-[350px] rounded-lg bg-gradient-to-t from-[#4A3D8B] to-[#8169F1] z-10`}></div>
+        <div className={`absolute ${isRTL ? 'right-1' : 'left-1'} top-12 w-[480px] h-[350px] bg-gradient-to-t from-[#4A3D8B] to-[#8169F1] z-10`}></div>
         <div className={`absolute ${isRTL ? '-right-11' : '-left-11'} top-0 z-0`}>
           <div className="grid grid-cols-9 gap-[3px]">
             {[...Array(81)].map((_, i) => (
@@ -31,31 +31,59 @@ const EventCard = () => {
           <img
             src={event}
             alt="Event"
-            className={`w-full h-[360px] object-cover rounded-lg ${isRTL ? 'border-r-12' : 'border-l-12'} border-[#8169F1]`}
+            className={`w-full h-[360px] object-cover ${isRTL ? 'border-r-12' : 'border-l-12'} border-[#8169F1]`}
           />
         </div>
       </div>
       <div className="w-full max-w-xl">
-        <h2 className={`text-3xl font-bold ${isRTL ? 'text-[#000000] dark:text-white' : 'text-[#000000] dark:text-white'} mb-6 leading-tight text-center ${isRTL ? 'lg:text-right font-cairo' : 'lg:text-left'}`} style={{ fontFamily: isRTL ? 'Cairo, sans-serif' : 'inherit' }}>
+        <h2
+          className={`text-3xl font-bold ${
+            isRTL ? 'text-[#000000] dark:text-white' : 'text-[#000000] dark:text-white'
+          } mb-6 leading-tight text-center ${isRTL ? 'lg:text-right font-cairo' : 'lg:text-left'}`}
+          style={{ fontFamily: isRTL ? 'Cairo, sans-serif' : 'inherit' }}
+        >
           {isRTL ? t('events.event1.title') : 'Welcome To The Digital Marketing Meetup 2025'}
         </h2>
-        <p className={`text-gray-500 dark:text-white mb-12 text-lg leading-relaxed text-center ${isRTL ? 'lg:text-right font-cairo' : 'lg:text-left'}`} style={{ fontFamily: isRTL ? 'Cairo, sans-serif' : 'inherit' }}>
-          {isRTL ? t('events.event1.description') : 'Educational And Promotional Live Streamed Sessions Where Experts Discuss Industry Trends, Product Demos, Q&A Sessions'}
+        <p
+          className={`text-gray-500 dark:text-white mb-12 text-lg leading-relaxed text-center ${
+            isRTL ? 'lg:text-right font-cairo' : 'lg:text-left'
+          }`}
+          style={{ fontFamily: isRTL ? 'Cairo, sans-serif' : 'inherit' }}
+        >
+          {isRTL
+            ? t('events.event1.description')
+            : 'Educational And Promotional Live Streamed Sessions Where Experts Discuss Industry Trends, Product Demos, Q&A Sessions'}
         </p>
         <div className="space-y-6">
           <div>
-            <h3 className={`text-[#000000] dark:text-white text-2xl font-semibold mb-1 ${isRTL ? 'text-right font-cairo' : ''}`} style={{ fontFamily: isRTL ? 'Cairo, sans-serif' : 'inherit' }}>
+            <h3
+              className={`text-[#000000] dark:text-white text-2xl font-semibold mb-1 ${
+                isRTL ? 'text-right font-cairo' : ''
+              }`}
+              style={{ fontFamily: isRTL ? 'Cairo, sans-serif' : 'inherit' }}
+            >
               {isRTL ? t('events.date') : 'Date:'}
             </h3>
-            <p className={`text-gray-500 dark:text-white text-xl ${isRTL ? 'text-right font-cairo' : ''}`} style={{ fontFamily: isRTL ? 'Cairo, sans-serif' : 'inherit' }}>
+            <p
+              className={`text-gray-500 dark:text-white text-xl ${isRTL ? 'text-right font-cairo' : ''}`}
+              style={{ fontFamily: isRTL ? 'Cairo, sans-serif' : 'inherit' }}
+            >
               {date}
             </p>
           </div>
           <div>
-            <h3 className={`text-[#000000] dark:text-white text-2xl font-semibold mb-1 ${isRTL ? 'text-right font-cairo' : ''}`} style={{ fontFamily: isRTL ? 'Cairo, sans-serif' : 'inherit' }}>
+            <h3
+              className={`text-[#000000] dark:text-white text-2xl font-semibold mb-1 ${
+                isRTL ? 'text-right font-cairo' : ''
+              }`}
+              style={{ fontFamily: isRTL ? 'Cairo, sans-serif' : 'inherit' }}
+            >
               {isRTL ? t('events.time') : 'Time:'}
             </h3>
-            <p className={`text-gray-500 dark:text-white text-xl ${isRTL ? 'text-right font-cairo' : ''}`} style={{ fontFamily: isRTL ? 'Cairo, sans-serif' : 'inherit' }}>
+            <p
+              className={`text-gray-500 dark:text-white text-xl ${isRTL ? 'text-right font-cairo' : ''}`}
+              style={{ fontFamily: isRTL ? 'Cairo, sans-serif' : 'inherit' }}
+            >
               {time}
             </p>
           </div>
@@ -83,7 +111,12 @@ const UpcomingEvents = () => {
       <div className="block md:hidden bg-white dark:bg-[#13022E] min-h-screen px-4 py-8">
         <div className="relative flex items-center justify-center mb-8">
           <span className="absolute -left-2 -top-2 w-8 h-8 border-2 border-[#8169F1] opacity-40 rounded-full"></span>
-          <h1 className={`text-lg font-bold ${isRTL ? 'text-[#4A3D8B] dark:text-[#1DBFFE]' : 'text-[#4A3D8B] dark:text-[#1DBFFE]'} text-center ${isRTL ? 'font-cairo' : ''}`} style={{ fontFamily: isRTL ? 'Cairo, sans-serif' : 'inherit' }}>
+          <h1
+            className={`text-lg font-bold ${
+              isRTL ? 'text-[#4A3D8B] dark:text-[#1DBFFE]' : 'text-[#4A3D8B] dark:text-[#1DBFFE]'
+            } text-center ${isRTL ? 'font-cairo' : ''}`}
+            style={{ fontFamily: isRTL ? 'Cairo, sans-serif' : 'inherit' }}
+          >
             {isRTL ? t('events.title') : 'Upcoming Events'}
           </h1>
         </div>
@@ -97,41 +130,66 @@ const UpcomingEvents = () => {
             </div>
           </div>
           <div className="relative z-20 w-[260px] h-[240px] mx-auto">
-            <img
-              src={event}
-              alt="Event"
-              className="w-full h-full object-cover rounded-md border-l-4 border-[#8169F1]"
-            />
+            <img src={event} alt="Event" className="w-full h-full border-l-3 border-[#8169F1]" />
           </div>
         </div>
         <div className="w-full max-w-xs mx-auto" dir={isRTL ? 'rtl' : 'ltr'}>
-          <h2 className={`text-lg font-semibold ${isRTL ? 'text-[#000000] dark:text-white' : 'text-[#4A3D8B] dark:text-white'} mb-2 ${isRTL ? 'font-cairo' : ''}`} style={{ fontFamily: isRTL ? 'Cairo, sans-serif' : 'inherit' }}>
+          <h2
+            className={`text-lg font-semibold ${
+              isRTL ? 'text-[#000000] dark:text-white' : 'text-[#4A3D8B] dark:text-white'
+            } mb-2 ${isRTL ? 'font-cairo' : ''}`}
+            style={{ fontFamily: isRTL ? 'Cairo, sans-serif' : 'inherit' }}
+          >
             {isRTL ? t('events.event1.title') : 'Web Development Workshop'}
           </h2>
-          <p className={`text-sm text-gray-500 dark:text-white mb-4 ${isRTL ? 'font-cairo' : ''}`} style={{ fontFamily: isRTL ? 'Cairo, sans-serif' : 'inherit' }}>
-            {isRTL ? t('events.event1.description') : 'Educational And Promotional Live Streamed Sessions Where Experts Discuss Industry Trends, Product Demos, Q&A Sessions'}
+          <p
+            className={`text-sm text-gray-500 dark:text-white mb-4 ${isRTL ? 'font-cairo' : ''}`}
+            style={{ fontFamily: isRTL ? 'Cairo, sans-serif' : 'inherit' }}
+          >
+            {isRTL
+              ? t('events.event1.description')
+              : 'Educational And Promotional Live Streamed Sessions Where Experts Discuss Industry Trends, Product Demos, Q&A Sessions'}
           </p>
           <div className="space-y-2 mb-6">
             <div>
-              <div className={`text-base font-medium ${isRTL ? 'text-[#000000] dark:text-white' : 'text-[#4A3D8B] dark:text-white'} mb-1 ${isRTL ? 'font-cairo' : ''}`} style={{ fontFamily: isRTL ? 'Cairo, sans-serif' : 'inherit' }}>
+              <div
+                className={`text-base font-medium ${
+                  isRTL ? 'text-[#000000] dark:text-white' : 'text-[#4A3D8B] dark:text-white'
+                } mb-1 ${isRTL ? 'font-cairo' : ''}`}
+                style={{ fontFamily: isRTL ? 'Cairo, sans-serif' : 'inherit' }}
+              >
                 {isRTL ? t('events.date') : 'Date:'}
               </div>
-              <div className={`text-base text-gray-500 dark:text-white ${isRTL ? 'font-cairo' : ''}`} style={{ fontFamily: isRTL ? 'Cairo, sans-serif' : 'inherit' }}>
+              <div
+                className={`text-base text-gray-500 dark:text-white ${isRTL ? 'font-cairo' : ''}`}
+                style={{ fontFamily: isRTL ? 'Cairo, sans-serif' : 'inherit' }}
+              >
                 {date}
               </div>
             </div>
             <div>
-              <div className={`text-base font-medium ${isRTL ? 'text-[#000000] dark:text-white' : 'text-[#4A3D8B] dark:text-white'} mb-1 ${isRTL ? 'font-cairo' : ''}`} style={{ fontFamily: isRTL ? 'Cairo, sans-serif' : 'inherit' }}>
+              <div
+                className={`text-base font-medium ${
+                  isRTL ? 'text-[#000000] dark:text-white' : 'text-[#4A3D8B] dark:text-white'
+                } mb-1 ${isRTL ? 'font-cairo' : ''}`}
+                style={{ fontFamily: isRTL ? 'Cairo, sans-serif' : 'inherit' }}
+              >
                 {isRTL ? t('events.time') : 'Time:'}
               </div>
-              <div className={`text-base text-gray-500 dark:text-white ${isRTL ? 'font-cairo' : ''}`} style={{ fontFamily: isRTL ? 'Cairo, sans-serif' : 'inherit' }}>
+              <div
+                className={`text-base text-gray-500 dark:text-white ${isRTL ? 'font-cairo' : ''}`}
+                style={{ fontFamily: isRTL ? 'Cairo, sans-serif' : 'inherit' }}
+              >
                 {time}
               </div>
             </div>
           </div>
           <div className="flex justify-end mt-14">
             <button
-              className="text-white px-8 py-2 rounded-lg bg-gradient-to-b from-secondary to-primary hover:from-primary hover:to-secondary transition dark:from-[#1DBFFE] dark:to-[#4A3D8B]"
+              className={`text-white px-4 py-3 rounded-2xl bg-gradient-to-b from-[#1DBFFE] to-[#4A3D8B] text-base font-semibold shadow ${
+                isRTL ? 'font-cairo' : ''
+              }`}
+              style={{ minWidth: '120px' }}
             >
               {isRTL ? t('news.viewMore') : 'View More'}
             </button>
@@ -140,7 +198,10 @@ const UpcomingEvents = () => {
       </div>
       {/* Desktop View */}
       <div className="hidden md:block">
-        <div className="bg-white dark:bg-[#13022E] min-h-screen relative overflow-hidden py-20 px-4 transition-colors duration-300" dir={isRTL ? 'rtl' : 'ltr'}>
+        <div
+          className="bg-white dark:bg-[#13022E] min-h-screen relative overflow-hidden py-20 px-4 transition-colors duration-300"
+          dir={isRTL ? 'rtl' : 'ltr'}
+        >
           <div className="absolute top-0 right-0">
             <div className="w-40 h-40 rounded-full border-2 border-[#8169F1] opacity-30"></div>
           </div>
@@ -148,13 +209,21 @@ const UpcomingEvents = () => {
             <div className="w-60 h-60 rounded-full border-2 border-[#8169F1] opacity-30"></div>
           </div>
           <div className="max-w-[1400px] mx-auto">
-            <h1 className={`text-3xl font-bold mb-16 text-center ${isRTL ? 'text-[#4A3D8B] dark:text-[#1DBFFE]' : 'text-[#4A3D8B] dark:text-[#1DBFFE]'}`} style={{ fontFamily: isRTL ? 'Cairo, sans-serif' : 'inherit' }}>
+            <h1
+              className={`text-3xl font-bold mb-16 text-center ${
+                isRTL ? 'text-[#4A3D8B] dark:text-[#1DBFFE]' : 'text-[#4A3D8B] dark:text-[#1DBFFE]'
+              }`}
+              style={{ fontFamily: isRTL ? 'Cairo, sans-serif' : 'inherit' }}
+            >
               {isRTL ? t('events.title') : 'Upcoming Events'}
             </h1>
             <EventCard />
             <div className="flex justify-end mt-14">
               <button
-                className={` ml-16 text-white px-10 py-2 rounded-lg bg-gradient-to-b from-secondary to-primary hover:from-primary hover:to-secondary transition dark:from-[#1DBFFE] dark:to-[#4A3D8B] ${isRTL ? 'font-cairo' : ''}`}
+                className={`text-white px-7 py-2 rounded-lg bg-gradient-to-b from-secondary to-primary hover:from-primary hover:to-secondary transition dark:from-[#1DBFFE] dark:to-[#4A3D8B] ${
+                  isRTL ? 'font-cairo' : ''
+                }`}
+                style={{ minWidth: '120px' }}
               >
                 {isRTL ? t('news.viewMore') : 'View More'}
               </button>

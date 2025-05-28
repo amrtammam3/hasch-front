@@ -90,9 +90,10 @@ const Portfolio = () => {
 
         {/* Language info and "View More" button */}
         <div className="flex justify-end px-4 mt-10 items-center gap-2">
-          <span className={`text-white text-sm ${isArabic ? 'font-cairo' : ''}`}>Current language: {i18n.language}</span>
+          <span className={`text-white text-sm ${isArabic ? 'font-cairo' : ''}`}></span>
           <button
-            className={`text-white px-8 py-2 rounded-lg bg-gradient-to-b from-[#1DBFFE] to-[#4A3D8B] text-base font-semibold shadow ${isArabic ? 'font-cairo' : ''}`}
+            className={`text-white px-4 py-3 rounded-2xl bg-gradient-to-b from-[#1DBFFE] to-[#4A3D8B] text-base font-semibold shadow ${isArabic ? 'font-cairo' : ''}`}
+            style={{ minWidth: '120px' }} 
           >
             {t('portfolio.viewMore')}
           </button>
@@ -139,10 +140,12 @@ const Portfolio = () => {
           {/* "View More" button */}
           <div className="flex justify-end mt-14 items-center gap-2">
             <button
-              className={`text-white px-10 py-2 rounded-lg bg-gradient-to-b from-secondary to-primary hover:from-primary hover:to-secondary transition dark:from-[#1DBFFE] dark:to-[#4A3D8B] ${isArabic ? 'font-cairo' : ''}`}
+              className={`text-white px-7 py-2 rounded-lg bg-gradient-to-b from-secondary to-primary hover:from-primary hover:to-secondary transition dark:from-[#1DBFFE] dark:to-[#4A3D8B] ${isArabic ? 'font-cairo' : ''}`}
+              style={{ minWidth: '120px' }} // أو width ثابت لو عاوز
             >
               {t('portfolio.viewMore')}
             </button>
+
           </div>
         </div>
       </div>

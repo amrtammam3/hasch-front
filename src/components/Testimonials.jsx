@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; // Importing React and useState hook for managing component state
+import React, { useState } from 'react'; 
 import groubstudent from '../assets/images/group-photo.png'; // Import group image asset
 import student from '../assets/images/student.png'; // Import student image asset
 import quoteMark from '../assets/images/quote-mark.png'; // Import quote mark image asset
@@ -38,119 +38,116 @@ const Testimonials = () => {
 
   return (
     <>
-      <div
-        dir={isArabic ? 'rtl' : 'ltr'} // Direction of text depending on language
-        className="block md:hidden min-h-screen bg-gradient-to-r from-[#4A3D8B] via-[#51449C] to-[#4A3D8B] px-4 py-8 relative overflow-hidden dark:bg-gradient-to-r dark:from-[#4A3D8B] dark:to-[#13022E]"
-      >
-        {/* Section title */}
-        <div className={isArabic ? 'pr-4 mb-6 relative z-20' : 'pl-4 mb-6 relative z-20'}>
-          <h2 className={clsx(
-            'text-white text-2xl font-bold leading-tight',
-            isArabic && 'font-cairo' // Use Cairo font for Arabic
-          )}>
-            <span className="block">{t('testimonials.title')}</span>
-            <span className="block">
-              {t('testimonials.subtitle')} <span className="font-extrabold"></span>
-            </span>
-          </h2>
-        </div>
+    <div
+  dir={isArabic ? 'rtl' : 'ltr'} // Direction of text depending on language
+  className="block md:hidden min-h-screen bg-gradient-to-r from-[#4A3D8B] via-[#51449C] to-[#4A3D8B] px-4 py-8 relative overflow-hidden dark:bg-gradient-to-r dark:from-[#4A3D8B] dark:to-[#13022E]"
+>
+  {/* Section title */}
+  <div className={isArabic ? 'pr-4 mb-6 relative z-20' : 'pl-4 mb-6 relative z-20'}>
+    <h2 className={clsx(
+      'text-white text-2xl font-bold leading-tight',
+      isArabic && 'font-cairo' // Use Cairo font for Arabic
+    )}>
+      <span className="block">{t('testimonials.title')}</span>
+      <span className="block">
+        {t('testimonials.subtitle')} <span className="font-extrabold"></span>
+      </span>
+    </h2>
+  </div>
 
-        {/* Student group image positioning */}
-        <div className={isArabic ? 'relative flex justify-end items-center mb-44' : 'relative flex justify-start items-center mb-44'}>
-          <div
-            className={isArabic ? 'absolute left-4 top-0 w-54 h-48 border-0' : 'absolute right-4 -top-16 w-54 h-48 border-0'}
-          >
+  {/* Student group image positioning */}
+  <div className={isArabic ? 'flex justify-end items-center mb-12' : 'relative flex justify-start items-center mb-44'}>
+    <div className={isArabic ? 'w-54 h-48 border-0' : 'absolute right-4 -top-16 w-54 h-48 border-0'}>
+      <img
+        src={groubstudent}
+        alt="Students working together"
+        className="w-full h-full object-cover"
+      />
+    </div>
+  </div>
+
+  {/* Testimonial card */}
+  <div
+    className={isArabic 
+      ? 'relative bg-transparent rounded-2xl px-4 py-6 mb-8 mt-8 border-2 border-dashed border-[#1DBFFE] w-[90%] mx-auto' 
+      : 'relative bg-transparent rounded-2xl px-4 py-6 mb-8 mt-8 border-2 border-dashed border-[#1DBFFE] w-[90%] mx-auto'}
+    style={{ maxWidth: '400px', minHeight: '250px' }}
+  >
+    <div className="flex items-center mb-4">
+      {isArabic ? (
+        // Layout for Arabic - image, name, quote mark from right to left
+        <>
+          <div className="w-12 h-12">
             <img
-              src={groubstudent}
-              alt="Students working together"
-              className="w-full h-full object-cover"
+              src={testimonials[currentTestimonial].image}
+              alt={testimonials[currentTestimonial].name}
+              className="w-full h-full object-cover rounded-full"
             />
           </div>
-        </div>
-
-        {/* Testimonial card */}
-            <div
-            className={isArabic 
-              ? 'relative bg-transparent rounded-2xl px-4 py-6 mb-8 mt-16 border-2 border-dashed border-[#1DBFFE] w-[90%] mx-auto' 
-              : 'relative bg-transparent rounded-2xl px-4 py-6 mb-8 mt-8 border-2 border-dashed border-[#1DBFFE] w-[90%] mx-auto'}
-            style={{ maxWidth: '400px', minHeight: '250px' }}
-          >
-
-          <div className="flex items-center mb-4">
-            {isArabic ? (
-              // Layout for Arabic - image, name, quote mark from right to left
-              <>
-                <div className="w-12 h-12">
-                  <img
-                    src={testimonials[currentTestimonial].image}
-                    alt={testimonials[currentTestimonial].name}
-                    className="w-full h-full object-cover rounded-full"
-                  />
-                </div>
-                <div className={clsx(
-                  'mx-3 text-white font-bold text-base',
-                  isArabic && 'font-cairo'
-                )}>
-                  {testimonials[currentTestimonial].name}
-                </div>
-                <div className="mr-auto w-10 h-10 opacity-50 flex items-center justify-end">
-                  <img
-                    src={quoteMark}
-                    alt="Quote mark"
-                    className="w-full h-full object-contain transform scale-x-[-1]" // Flip quote mark horizontally for RTL
-                  />
-                </div>
-              </>
-            ) : (
-              // Layout for non-Arabic (LTR)
-              <>
-                <div className="w-12 h-12">
-                  <img
-                    src={testimonials[currentTestimonial].image}
-                    alt={testimonials[currentTestimonial].name}
-                    className="w-full h-full object-cover rounded-full"
-                  />
-                </div>
-                <div className={clsx(
-                  'ml-3 text-white font-bold text-base',
-                  isArabic && 'font-cairo'
-                )}>
-                  {testimonials[currentTestimonial].name}
-                </div>
-                <div className="ml-auto w-10 h-10 opacity-50 flex items-center justify-end">
-                  <img
-                    src={quoteMark}
-                    alt="Quote mark"
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-              </>
-            )}
-          </div>
-          {/* Testimonial text */}
-          <p className={clsx(
-            isArabic ? 'text-white text-sm leading-relaxed whitespace-pre-line text-right' : 'text-white text-sm leading-relaxed whitespace-pre-line',
+          <div className={clsx(
+            'mx-3 text-white font-bold text-base',
             isArabic && 'font-cairo'
           )}>
-            {testimonials[currentTestimonial].text}
-          </p>
-        </div>
-
-        {/* Navigation dots for switching between testimonials */}
-        <div className={isArabic ? 'flex justify-center mt-2 space-x-2 space-x-reverse' : 'flex justify-center mt-2 space-x-2'}>
-          {testimonials.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentTestimonial(index)} // Change current testimonial
-              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                currentTestimonial === index
-                  ? 'bg-white' // Active dot
-                  : 'bg-[#C1C1F4] opacity-50' // Inactive dot
-              }`}
+            {testimonials[currentTestimonial].name}
+          </div>
+          <div className="mr-auto w-10 h-10 opacity-50 flex items-center justify-end">
+            <img
+              src={quoteMark}
+              alt="Quote mark"
+              className="w-full h-full object-contain transform scale-x-[-1]" // Flip quote mark horizontally for RTL
             />
-          ))}
-        </div>
-      </div>
+          </div>
+        </>
+      ) : (
+        // Layout for non-Arabic (LTR)
+        <>
+          <div className="w-12 h-12">
+            <img
+              src={testimonials[currentTestimonial].image}
+              alt={testimonials[currentTestimonial].name}
+              className="w-full h-full object-cover rounded-full"
+            />
+          </div>
+          <div className={clsx(
+            'ml-3 text-white font-bold text-base',
+            isArabic && 'font-cairo'
+          )}>
+            {testimonials[currentTestimonial].name}
+          </div>
+          <div className="ml-auto w-10 h-10 opacity-50 flex items-center justify-end">
+            <img
+              src={quoteMark}
+              alt="Quote mark"
+              className="w-full h-full object-contain"
+            />
+          </div>
+        </>
+      )}
+    </div>
+    {/* Testimonial text */}
+    <p className={clsx(
+      isArabic ? 'text-white text-sm leading-relaxed whitespace-pre-line text-right' : 'text-white text-sm leading-relaxed whitespace-pre-line',
+      isArabic && 'font-cairo'
+    )}>
+      {testimonials[currentTestimonial].text}
+    </p>
+  </div>
+
+  {/* Navigation dots for switching between testimonials */}
+  <div className={isArabic ? 'flex justify-center mt-2 space-x-2 space-x-reverse' : 'flex justify-center mt-2 space-x-2'}>
+    {testimonials.map((_, index) => (
+      <button
+        key={index}
+        onClick={() => setCurrentTestimonial(index)} // Change current testimonial
+        className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+          currentTestimonial === index
+            ? 'bg-white' // Active dot
+            : 'bg-[#C1C1F4] opacity-50' // Inactive dot
+        }`}
+      />
+    ))}
+  </div>
+    </div>
 
       {/* Desktop version section */}
       <div className="hidden md:block">

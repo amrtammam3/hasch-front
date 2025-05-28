@@ -110,7 +110,9 @@ const Courses = () => {
         {/* Button */}
         <div className="flex justify-end px-4 mt-10">
           <button
-            className={`text-white px-8 py-2 rounded-lg bg-gradient-to-b from-[#1DBFFE] to-[#4A3D8B] text-base font-semibold shadow ${isArabic ? 'font-cairo' : ''}`}
+            className={`text-white px-4 py-3 rounded-2xl bg-gradient-to-b from-[#1DBFFE] to-[#4A3D8B] text-base font-semibold shadow ${isArabic ? 'font-cairo' : ''}`}
+            style={{ minWidth: '120px' }} 
+
           >
             {t('courses.viewMore')}
           </button>
@@ -134,13 +136,22 @@ const Courses = () => {
                 <CourseCard key={course.id} {...course} />
               ))}
             </div>
-            <div className="flex justify-end mt-14">
+            {/* <div className="flex justify-end mt-14">
               <button
                 className={`text-white px-10 py-2 rounded-lg bg-gradient-to-b from-secondary to-primary hover:from-primary hover:to-secondary transition dark:from-[#1DBFFE] dark:to-[#4A3D8B] ${isArabic ? 'font-cairo' : ''}`}
               >
                 {t('courses.viewMore')}
               </button>
+            </div> */}
+            <div className="flex justify-end mt-14 items-center gap-2">
+              <button
+                className={`text-white px-7 py-2 rounded-lg bg-gradient-to-b from-secondary to-primary hover:from-primary hover:to-secondary transition dark:from-[#1DBFFE] dark:to-[#4A3D8B] ${isArabic ? 'font-cairo' : ''}`}
+                style={{  minWidth: '120px' }} // عرض ثابت للزرار
+              >
+                {t('courses.viewMore')}
+              </button>
             </div>
+
           </div>
         </div>
       </div>

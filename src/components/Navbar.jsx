@@ -1,7 +1,11 @@
 
+
+
+
+
 import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
-import Logo from '../assets/images/haschcode-logo.svg';
+import Logo from '../assets/images/Logo3000px.png';
 import Frame3 from '../assets/images/Frame 3.png';
 import { HiMenuAlt3, HiX } from 'react-icons/hi';
 import { IoPersonOutline } from 'react-icons/io5';
@@ -51,7 +55,7 @@ const LanguageDropdown = () => {
     <div className="relative flex items-center">
       <button
         onClick={toggleDropdown}
-        className="text-14 font-cairo font-600 rounded px-1 py- transition text-white hover:text-gray-200 flex items-center"
+        className="text-14 font-cairo font-600 rounded px-2 py-1 transition text-white hover:text-gray-200 flex items-center"
         aria-label="Toggle language dropdown"
       >
         {currentLang === LANGS.AR ? 'ع' : 'EN'}
@@ -60,16 +64,23 @@ const LanguageDropdown = () => {
         </svg>
       </button>
       {isOpen && (
-        <div className="absolute top-full mt-2 w-32 bg-white dark:bg-gray-800 rounded-md shadow-lg z-50">
+        <div
+          className={clsx(
+            'absolute top-[2.25rem] mt-1 w-[90px] bg-white dark:bg-gray-800 rounded-md shadow-lg z-50 overflow-x-hidden', // Reduced width and added overflow
+            'min-w-[80px] max-w-[calc(100vw-4rem)]', // Tighter constraints for mobile
+            currentLang === LANGS.AR ? 'right-0' : 'left-0', // Simplified positioning
+            'sm:w-[100px] sm:right-0 sm:left-auto' // Tablet adjustments
+          )}
+        >
           <button
             onClick={() => handleLanguageChange(LANGS.EN)}
-            className="block w-full text-left px-4 py-2 text-14 font-cairo font-600 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+            className="block w-full text-center px-2 py-2 text-13 font-cairo font-600 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
           >
             English
           </button>
           <button
             onClick={() => handleLanguageChange(LANGS.AR)}
-            className="block w-full text-left px-4 py-2 text-14 font-cairo font-600 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+            className="block w-full text-center px-2 py-2 text-13 font-cairo font-600 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
           >
             العربية
           </button>
@@ -101,14 +112,14 @@ const Navbar = () => {
 
   return (
     <nav className="bg-transparent z-50 absolute top-[30px] w-full transition-colors duration-300" role="navigation">
-      <div className="mx-auto px- max-w-[1300px]"> {/* Increased max-width from max-w-7xl to max-w-[1400px] to reduce left/right margins */}
+      <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-[1300px]">
         <div className="flex items-center justify-between h-[47px]">
           {/* Logo and brand name for desktop view */}
           <div className="hidden lg:flex items-center gap-2 flex-shrink-0">
             <a href="/" className="flex items-center gap-1" aria-label="HaschCode Home">
               <img src={Logo} alt="HaschCode Logo" className="h-[36px] w-auto object-contain" />
               <span className="text-24 text-white dark:text-white font-fahkwang font-700">
-                  HaschCode
+                HaschCode
               </span>
             </a>
           </div>
@@ -122,58 +133,45 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Right-side controls for desktop view (AI Assistant, Theme Toggle, Language Dropdown, Login) */}
+          {/* Right-side controls for desktop view */}
           <div className="hidden lg:flex items-center gap-3">
-            {/* <img
-              src={Frame3}
-              alt="AI Assistant"
-              className="h-[34px] w-auto object-contain cursor-pointer"
-              aria-label="AI Assistant"
-            /> */}
             <ThemeToggle />
             <div className="flex items-center gap-0.5">
               <LanguageDropdown />
               <FaGlobe className="text-14 text-white" />
             </div>
-            {/* <button
-              className={clsx(
-                'text-14 font-cairo font-600 flex items-center rounded-lg px-1 py-2 transition',
-                theme === 'light' && currentLang === LANGS.AR
-                  ? 'bg-primary-darken-2 bg-white/5 text-textWhite shadow-md hover:bg-primaryHover'
-                  : 'text-textWhite hover:text-textGray'
-              )}
-              aria-label={t('common.login')}
-            >
-              <IoPersonOutline className="" /> {t('common.login')}
-            </button> */}
           </div>
 
           {/* Mobile view layout */}
           <div
             className={clsx(
-              'lg:hidden flex items-center justify-between w-full h-14',
+              'lg:hidden flex items-center justify-between w-full h-14 px-2 sm:px-4',
               currentLang === LANGS.AR ? 'flex-row-reverse' : 'flex-row'
             )}
           >
-            {/* Menu toggle button */}
-            <button
-              onClick={toggleMenu}
-              className="p-2 text-white hover:text-gray-200 transition-colors"
-              aria-label={isOpen ? 'Close menu' : 'Open menu'}
-            >
-              {isOpen ? <HiX className="h-6 w-6" /> : <HiMenuAlt3 className="h-6 w-6" />}
-            </button>
+            {/* Hamburger menu */}
+            <div className={clsx(currentLang === LANGS.AR ? 'order-3' : 'order-1')}>
+              <button
+                onClick={toggleMenu}
+                className="p-2 text-white hover:text-gray-200 transition-colors"
+                aria-label={isOpen ? 'Close menu' : 'Open menu'}
+              >
+                {isOpen ? <HiX className="h-6 w-6" /> : <HiMenuAlt3 className="h-6 w-6" />}
+              </button>
+            </div>
 
-            {/* Logo and brand name for mobile view */}
-            <a href="/" className="flex items-center gap-2" aria-label="HaschCode Home">
-              <img src={Logo} alt="HaschCode Logo" className="h-9 w-auto object-contain" />
-              <span className="text-22 text-white font-fahkwang font-700">
-                HaschCode
-              </span>
-            </a>
+            {/* Logo and brand name (centered) */}
+            <div className="order-2 flex justify-center flex-1">
+              <a href="/" className="flex items-center gap-2" aria-label="HaschCode Home">
+                <img src={Logo} alt="HaschCode Logo" className="h-9 w-auto object-contain" />
+                <span className="text-22 text-white font-fahkwang font-700">
+                  HaschCode
+                </span>
+              </a>
+            </div>
 
-            {/* Language dropdown and globe icon for mobile view */}
-            <div className="flex items-center gap-1">
+            {/* Language dropdown and globe icon */}
+            <div className={clsx('flex items-center gap-1', currentLang === LANGS.AR ? 'order-1' : 'order-3')}>
               <FaGlobe className="text-16 text-white" />
               <LanguageDropdown />
             </div>

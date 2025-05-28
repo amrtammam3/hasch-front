@@ -1,15 +1,17 @@
 
 
 
+
 // Footer component with company info, social links, and email contact
-// مكون الفوتر يحتوي على معلومات الشركة وروابط التواصل الاجتماعي
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { FaFacebookF, FaWhatsapp, FaInstagram, FaEnvelope } from 'react-icons/fa'; // إضافة أيقونة الإيميل
-import { FaXTwitter } from "react-icons/fa6";
-import Logo from '../assets/images/haschcode-logo.svg';
+import { FaEnvelope } from 'react-icons/fa'; 
+import Logo from '../assets/images/Logo3000px.png';
+import FacebookIcon from '../assets/images/facebook.png';
+import TwitterIcon from '../assets/images/twitter.png';
+import WhatsappIcon from '../assets/images/whatsapp.png';
+import InstagramIcon from '../assets/images/instagram.png';
 
-// مكون الفوتر الرئيسي
 const Footer = () => {
   const { t } = useTranslation();
 
@@ -50,10 +52,19 @@ const Footer = () => {
           </div>
           <div className="mt-8 pt-8 border-t border-gray-700 flex flex-row-reverse items-center justify-between">
             <div className="flex space-x-4 rtl:space-x-reverse">
-              <a href="#" className="text-white hover:text-gray-300 transition-colors"><FaFacebookF size={20} /></a>
-              <a href="#" className="text-white hover:text-gray-300 transition-colors"><FaXTwitter size={20} /></a>
-              <a href="#" className="text-white hover:text-gray-300 transition-colors"><FaWhatsapp size={20} /></a>
-              <a href="#" className="text-white hover:text-gray-300 transition-colors"><FaInstagram size={20} /></a>
+              {/* Replaced react-icons with img tags */}
+              <a href="#" className="text-white hover:opacity-70 transition-opacity">
+                <img src={FacebookIcon} alt="Facebook" className="w-5 h-5" />
+              </a>
+              <a href="#" className="text-white hover:opacity-70 transition-opacity">
+                <img src={TwitterIcon} alt="Twitter" className="w-5 h-5" />
+              </a>
+              <a href="#" className="text-white hover:opacity-70 transition-opacity">
+                <img src={WhatsappIcon} alt="WhatsApp" className="w-5 h-5" />
+              </a>
+              <a href="#" className="text-white hover:opacity-70 transition-opacity">
+                <img src={InstagramIcon} alt="Instagram" className="w-5 h-5" />
+              </a>
               <a href="mailto:info@Haschco.de" className="text-white hover:text-gray-300 transition-colors flex items-center gap-2">
                 <FaEnvelope size={20} />
                 <span className="text-xs md:text-sm">info@Haschco.de</span>
@@ -102,10 +113,19 @@ const Footer = () => {
                 {t('footer.rights')}
               </p>
               <div className="flex space-x-6 rtl:space-x-reverse">
-                <a href="#" className="text-white hover:text-gray-300 transition-colors"><FaFacebookF size={20} /></a>
-                <a href="#" className="text-white hover:text-gray-300 transition-colors"><FaXTwitter size={20} /></a>
-                <a href="#" className="text-white hover:text-gray-300 transition-colors"><FaWhatsapp size={20} /></a>
-                <a href="#" className="text-white hover:text-gray-300 transition-colors"><FaInstagram size={20} /></a>
+                {/* Replaced react-icons with img tags */}
+                <a href="#" className="text-white hover:opacity-70 transition-opacity">
+                  <img src={FacebookIcon} alt="Facebook" className="w-5 h-5" />
+                </a>
+                <a href="#" className="text-white hover:opacity-70 transition-opacity">
+                  <img src={TwitterIcon} alt="Twitter" className="w-5 h-5" />
+                </a>
+                <a href="#" className="text-white hover:opacity-70 transition-opacity">
+                  <img src={WhatsappIcon} alt="WhatsApp" className="w-5 h-5" />
+                </a>
+                <a href="#" className="text-white hover:opacity-70 transition-opacity">
+                  <img src={InstagramIcon} alt="Instagram" className="w-5 h-5" />
+                </a>
                 <a href="mailto:info@Haschco.de" className="text-white hover:text-gray-300 transition-colors flex items-center gap-2">
                   <FaEnvelope size={20} />
                   <span className="text-sm">info@Haschco.de</span>
