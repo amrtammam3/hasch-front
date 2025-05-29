@@ -151,7 +151,7 @@ const Testimonials = () => {
 
       {/* Desktop version section */}
       <div className="hidden md:block">
-        <div className="py-20 bg-gradient-to-r from-[#4A3D8B] via-[#51449C] to-[#4A3D8B] transition-colors duration-300 dark:bg-gradient-to-r dark:from-[#4A3D8B] dark:to-[#13022E]">
+        <div className="py-20 bg-gradient-to-r from-[#9E91D2] via-[#51449C] to-[#4A3D8B] transition-colors duration-300 dark:bg-gradient-to-r dark:from-[#4A3D8B] dark:to-[#13022E]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Title */}
             <div className="text-center mb-16">
